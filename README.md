@@ -19,7 +19,7 @@ The scripts we require in each toolkit are:
   - Of course your baseline method also needs to adhere to the rules of the competition: no transfer learning, no fine-tuning.
   - Use your baseline method to test your datasets, submission and evaluation scripts!
 
-For the structure of your challenge folder you can refer to the `example-challenge` challenge. Adhering to this structure will make the pull request a lot easier.
+For the structure of your challenge folder you can refer to the `example-challenge` challenge. Adhering to this structure will make the pull request a lot easier. To get started install the dependencies in `example-challenge/requirements.txt`, then fill in the blanks in the provided scripts to implement your toolkit.
 
 ## Notes
 
