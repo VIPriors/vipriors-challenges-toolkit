@@ -33,6 +33,5 @@ python data/generate_data.py
 | **model**           | **checkpoint** | **// METRIC //** |
 | ------------------- | -------------- | ---------------- |
 | YOUR FANCY BASELINE | SOME PATH      | SOME VALUE       |
-| ---                 | ---            | ---              |
 
 *Instructions on adapting the baseline*.
