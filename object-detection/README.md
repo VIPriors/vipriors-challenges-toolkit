@@ -14,6 +14,10 @@ As a note: **DO NOT train on MS COCO validation data.** Please use the tooling d
 
 To find instructions on setting up data please refer to [data README](data/README.md).
 
+## Validation
+
+We provide an evaluation script to test your model over the validation set. Note that this script cannot be used to evaluate models over the testing set, as we do not provide labels for the test set. It is good practice to ensure your predictions work with this script, as the same script is used on the evaluation server.
+
 ## Submissions
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
