@@ -10,7 +10,7 @@ Please follow the instructions below to set up the data for this challenge. The 
 
 These are the instructions for setting up the data for the VIPriors object detection challenge.
 
-1. Download the 2017 train/val images from MS COCO website;
+1. Download the 2017 train/val images from [MS COCO website](http://cocodataset.org/#download);
 2. Extract both ZIPs to `data`. This creates folders "train2017" and "val2017".
 3. Download the VIPriors object detection annotations from [the CodaLab competition website](https://competitions.codalab.org/competitions/23661#participate-get_starting_kit) and extract the ZIP file in `data` to create folder `data/annotations` and file `test_image_mappings.txt`.
 4. Run `python arrange_images.py` from folder `data` to automatically prepare the images according to challenge instructions.
