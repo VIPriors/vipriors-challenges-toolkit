@@ -1,6 +1,6 @@
-# VIPriors object detection challenge
+# VIPriors Object Detection challenge
 
-Maintainer: Robert-Jan Bruintjes (r.bruintjes@tudelft.nl)
+*Maintainer: Robert-Jan Bruintjes (r.bruintjes@tudelft.nl)*
 
 We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer four challenges, where models are to be trained from scratch, and we reduce the number of training samples to a fraction of the full set. The winners of each challenge are invited to present their winning method at the VIPriors workshop presentation at ECCV 2020.
 
@@ -12,7 +12,7 @@ The task to be performed is object detection, predicting bounding boxes. The tra
 
 As a note: **DO NOT train on MS COCO validation data.** Please use the tooling described here to set up your training, validation and test data to avoid accidentally training on test data.
 
-To find instructions on setting up data please refer to [data README](data/README.md).
+To find instructions on setting up data please refer to [the data README](data/README.md).
 
 ## Validation
 

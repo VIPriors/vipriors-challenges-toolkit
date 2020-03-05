@@ -1,4 +1,4 @@
-# Object detection challenge datasets
+# VIPriors Object Detection challenge - Data
 
 The VIPriors object detection challenge uses a subset of the 2017 MS COCO object detection dataset. In particular, we use the bounding box annotations.
 
@@ -12,8 +12,8 @@ These are the instructions for setting up the data for the VIPriors object detec
 
 1. Download the 2017 train/val images from MS COCO website;
 2. Extract both ZIPs to `data`. This creates folders "train2017" and "val2017".
-3. Download the VIPriors object detection annotations from [this link](https://vipriors.githiub.io/challenges and extract the ZIP file in `data` to create folder `data/annotations` and file `test_image_mappings_seed<x>.txt`.
-4. Run `python arrange_images.py` to automatically prepare the images according to challenge instructions.
+3. Download the VIPriors object detection annotations from [the CodaLab competition website](https://competitions.codalab.org/competitions/23661#participate-get_starting_kit) and extract the ZIP file in `data` to create folder `data/annotations` and file `test_image_mappings.txt`.
+4. Run `python arrange_images.py` from folder `data` to automatically prepare the images according to challenge instructions.
 
 Now you are ready to use the data.
 
