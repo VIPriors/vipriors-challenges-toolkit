@@ -1,3 +1,9 @@
+# CUSTOM: ignore data generation for now (until we move it)
+object-detection/data/generate/*
+
+# CUSTOM: ignore data
+object-detection/data/images/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

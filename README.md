@@ -1,6 +1,13 @@
 # VIPriors challenges toolkit
 Collection of tools to support submissions to the [1st VIPriors workshop challenges](https://vipriors.github.io/challenges/).
 
+## Challenges
+
+Please find the toolkit for each challenge here:
+
+- [Object Detection](object-detection/README.md)
+- ...
+
 ## Contributing challenges
 
 Please set up the toolkit for your challenge in the folder named for your challenge. Work on a branch specific to your challenge. Once you completed the toolkit please make a pull request for your branch on GitHub and add another organizer as reviewer.
