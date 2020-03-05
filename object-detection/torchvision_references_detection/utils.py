@@ -235,7 +235,25 @@ class MetricLogger(object):
 
 
 def collate_fn(batch):
-    return tuple(zip(*batch))
+    return list(zip(*batch))
+
+
+def targets_to_tensors(flattened_targets):
+    for target in flattened_targets:
+        target['boxes'] = torch.as_tensor(target['boxes']).type(torch.float32)
+        target['id'] = torch.as_tensor(target['id']).type(torch.int64)
+        target['iscrowd'] = torch.as_tensor(target['iscrowd']).type(torch.int64)
+        target['area'] = torch.as_tensor(target['area']).type(torch.int64)
+        target['image_id'] = torch.as_tensor(target['image_id']).type(torch.int64)
+        target['labels'] = torch.as_tensor(target['labels']).type(torch.int64)
+
+    return flattened_targets
+
+
+def collate_and_make_tensors(batch):
+    images, targets = list(zip(*batch))
+
+    return list(images), targets_to_tensors(list(targets))
 
 
 def warmup_lr_scheduler(optimizer, warmup_iters, warmup_factor):

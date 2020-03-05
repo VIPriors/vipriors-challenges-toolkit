@@ -29,8 +29,11 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
         images = list(image.to(device) for image in images)
         targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
-        loss_dict = model(images, targets)
+        # DEBUG(rjbruin)
+        if len(targets) == 0:
+            raise ValueError("There are still samples with zero targets!")
 
+        loss_dict = model(images, targets)
         losses = sum(loss for loss in loss_dict.values())
 
         # reduce losses over all GPUs for logging purposes
@@ -39,7 +42,8 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
 
         loss_value = losses_reduced.item()
 
-        if not math.isfinite(loss_value):
+        # DEBUG: only catch NaN loss if we don't have anomaly detection enabled
+        if not torch.is_anomaly_enabled() and not math.isfinite(loss_value):
             print("Loss is {}, stopping training".format(loss_value))
             print(loss_dict_reduced)
             sys.exit(1)
@@ -82,10 +86,8 @@ def evaluate(model, data_loader, device):
     coco_evaluator = CocoEvaluator(coco, iou_types)
 
     for image, targets in metric_logger.log_every(data_loader, 100, header):
-        # print(len(targets))
-        # print(targets[0])
         image = list(img.to(device) for img in image)
-        # targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
+        targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
         torch.cuda.synchronize()
         model_time = time.time()
@@ -127,14 +129,16 @@ def perform_eval_inference(model, data_loader, device):
     results_for_file = {iou_type: [] for iou_type in coco_evaluator.iou_types}
     for image, targets in metric_logger.log_every(data_loader, 100, header):
         image = list(img.to(device) for img in image)
-        # targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
         torch.cuda.synchronize()
         model_time = time.time()
         outputs = model(image)
-
-        outputs = [{k: v.to(cpu_device) for k, v in t.items()} for t in outputs]
         model_time = time.time() - model_time
+
+        # DEBUG
+        if isinstance(targets, dict):
+            targets = [targets]
+        targets = [{k: v.to(cpu_device).detach().numpy() for k, v in t.items()} for t in targets]
 
         res = {target["image_id"].item(): output for target, output in zip(targets, outputs)}
         evaluator_time = time.time()
@@ -155,24 +159,6 @@ def perform_eval_inference(model, data_loader, device):
 @torch.no_grad()
 def evaluate_from_results_file(gt_data_loader, results_from_file):
     coco = get_coco_api_from_dataset(gt_data_loader.dataset)
-    iou_types = ["bbox"] # NOTE(rjbruin): hardcoded to only do bboxes
-    coco_evaluator = CocoEvaluator(coco, iou_types)
-    coco_evaluator.put_results(results_from_file)
-    coco_evaluator.synchronize_between_processes()
-
-    # accumulate predictions from all images
-    coco_evaluator.accumulate()
-    coco_evaluator.summarize()
-    torch.set_num_threads(torch.get_num_threads())
-    return coco_evaluator
-
-@torch.no_grad()
-def evaluate_preloaded(gt_from_file, results_from_file):
-    # Use dataset object loaded from file instead of from dataset
-    coco = COCO()
-    coco.dataset = gt_from_file
-    coco.createIndex()
-
     iou_types = ["bbox"] # NOTE(rjbruin): hardcoded to only do bboxes
     coco_evaluator = CocoEvaluator(coco, iou_types)
     coco_evaluator.put_results(results_from_file)

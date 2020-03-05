@@ -8,19 +8,37 @@ Input:
     groundtruths (str): filepath. Should be an annotation file.
 
 Usage:
-    evaluate.py <groundtruths> <predictions>
+    evaluate.py <groundtruths> <predictions> <output_dir>
 """
-import docopt
 import json
+import os
+import sys
+import time
 
-import torch
-import torchvision
-from torchvision_references_detection.engine import evaluate_preloaded
+from pycocotools.coco import COCO
+from torchvision_references_detection.coco_eval import CocoEvaluator
 
 
 OUTPUT_FILE = 'scores.txt'
 
-def evaluate_from_files(groundtruths_filepath, predictions_filepath):
+def evaluate_preloaded(gt_from_file, results_from_file):
+    # Use dataset object loaded from file instead of from dataset
+    coco = COCO()
+    coco.dataset = gt_from_file
+    coco.createIndex()
+
+    iou_types = ["bbox"] # NOTE(rjbruin): hardcoded to only do bboxes
+    coco_evaluator = CocoEvaluator(coco, iou_types)
+    coco_evaluator.put_results(results_from_file)
+    coco_evaluator.synchronize_between_processes()
+
+    # accumulate predictions from all images
+    coco_evaluator.accumulate()
+    coco_evaluator.summarize()
+    # torch.set_num_threads(torch.get_num_threads())
+    return coco_evaluator
+
+def evaluate_from_files(groundtruths_filepath, predictions_filepath, output_dir):
     """
     Wrapper around evaluation code that reads the objects from JSON files.
     """
@@ -30,29 +48,37 @@ def evaluate_from_files(groundtruths_filepath, predictions_filepath):
     with open(predictions_filepath, 'r') as f:
         results = {'bbox': json.load(f)}
 
-    return evaluate(groundtruths, results)
+    return evaluate(groundtruths, results, output_dir)
 
-def evaluate(groundtruths, results):
+def evaluate(groundtruths, results, output_dir):
     """
     Evaluation code
     """
+    start = time.time()
     coco_evaluator = evaluate_preloaded(groundtruths, results)
-    mean_ap = coco_evaluator.coco_eval['bbox'].stats[0]
+    total_time = time.time() - start
 
+    all_stats = coco_evaluator.coco_eval['bbox'].stats
     metrics = [
-        ('AP (IoU 0.50-0.95)', mean_ap)
+        ("AP @ 0.50-0.95", all_stats[0]),
+        ("AP @ 0.50", all_stats[1]),
+        ("AP @ 0.75", all_stats[2]),
+        ("AP @ 0.50-0.95 (small)", all_stats[3]),
+        ("AP @ 0.50-0.95 (medium)", all_stats[4]),
+        ("AP @ 0.50-0.95 (large)", all_stats[5]),
+        ("ExecutionTime", total_time)
     ]
 
     # Write metrics to file
     # NOTE(rjbruin): make sure to store metrics as a list of tuples
     # (name (str), value (float))
     # NOTE(rjbruin): `name` cannot contain colons!
-    with open(OUTPUT_FILE, 'w') as f:
+    with open(os.path.join(output_dir, OUTPUT_FILE), 'w') as f:
         for name, val in metrics:
             f.write(f"{name}: {val:.8f}\n")
 
     print("Metrics written to scores.txt.")
 
 if __name__ == '__main__':
-    args = docopt.docopt(__doc__, version='1.0.0')
-    evaluate_from_files(args['<groundtruths>'], args['<predictions>'])
+    args = sys.argv[1:]
+    evaluate_from_files(args[0], args[1], args[2])

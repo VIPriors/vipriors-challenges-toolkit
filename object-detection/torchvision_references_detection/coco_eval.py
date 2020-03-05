@@ -1,19 +1,18 @@
-import json
-import tempfile
+# import json
 
 import numpy as np
 import copy
 import time
-import torch
-import torch._six
+# import torch
+# import torch._six
+from collections import defaultdict
 
 from pycocotools.cocoeval import COCOeval
 from pycocotools.coco import COCO
 import pycocotools.mask as mask_util
 
-from collections import defaultdict
 
-import torchvision_references_detection.utils as utils
+# import torchvision_references_detection.utils as utils
 
 
 class CocoEvaluator(object):
@@ -89,7 +88,8 @@ class CocoEvaluator(object):
             # TODO: COCO() is set without annotations if there are no predictions
             coco_dt = loadRes(self.coco_gt, results) if results else COCO()
             # DEBUG
-            coco_dt.dataset['annotations'] = []
+            if 'annotations' not in coco_dt.dataset:
+                coco_dt.dataset['annotations'] = []
 
             coco_eval = self.coco_eval[iou_type]
 
@@ -210,13 +210,18 @@ class CocoEvaluator(object):
 
 
 def convert_to_xywh(boxes):
-    xmin, ymin, xmax, ymax = boxes.unbind(1)
-    return torch.stack((xmin, ymin, xmax - xmin, ymax - ymin), dim=1)
+    # xmin, ymin, xmax, ymax = boxes.unbind(1)
+    # return torch.stack((xmin, ymin, xmax - xmin, ymax - ymin), dim=1)
+    xmin, ymin, xmax, ymax = np.transpose(boxes)
+    return np.stack([xmin, ymin, xmax - xmin, ymax - ymin], axis=1)
 
 
 def merge(img_ids, eval_imgs):
-    all_img_ids = utils.all_gather(img_ids)
-    all_eval_imgs = utils.all_gather(eval_imgs)
+    # all_img_ids = utils.all_gather(img_ids)
+    # all_eval_imgs = utils.all_gather(eval_imgs)
+
+    all_img_ids = [img_ids]
+    all_eval_imgs = [eval_imgs]
 
     merged_img_ids = []
     for p in all_img_ids:
@@ -300,9 +305,9 @@ def loadRes(self, resFile):
 
     # print('Loading and preparing results...')
     # tic = time.time()
-    if isinstance(resFile, torch._six.string_classes):
-        anns = json.load(open(resFile))
-    elif type(resFile) == np.ndarray:
+    # if isinstance(resFile, torch._six.string_classes):
+    #     anns = json.load(open(resFile))
+    if type(resFile) == np.ndarray:
         anns = self.loadNumpyAnnotations(resFile)
     else:
         anns = resFile

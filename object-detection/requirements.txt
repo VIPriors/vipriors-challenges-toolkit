@@ -1,0 +1,3 @@
+torchvision
+docopt
+numpy==1.17.4

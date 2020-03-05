@@ -1,6 +1,7 @@
 import copy
 import os
 from PIL import Image
+import tqdm
 
 import torch
 import torch.utils.data
@@ -149,10 +150,16 @@ def convert_to_coco_api(ds):
     ann_id = 1
     dataset = {'images': [], 'categories': [], 'annotations': []}
     categories = set()
-    for img_idx in range(len(ds)):
+    for img_idx in tqdm.tqdm(range(len(ds)), desc="Loading groundtruths for evaluation"):
         # find better way to get target
         # targets = ds.get_annotations(img_idx)
         img, targets = ds[img_idx]
+
+        # DEBUG: if there is at most one key (only `image_id`) then there are
+        # no annotations
+        if len(targets) <= 1:
+            continue
+
         image_id = targets["image_id"].item()
         img_dict = {}
         img_dict['id'] = image_id
