@@ -20,7 +20,7 @@ if __name__ == '__main__':
     os.makedirs("test-images")
 
     print("Loading VIPriors testing split settings...")
-    with open('annotations/test_image_mappings_seed235.txt', 'r') as f:
+    with open('annotations/test_image_mappings.txt', 'r') as f:
         lines = f.read().split("\n")
         test_mappings = {}
         for line in lines:
