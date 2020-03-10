@@ -12,9 +12,6 @@ from pycocotools.coco import COCO
 import pycocotools.mask as mask_util
 
 
-# import torchvision_references_detection.utils as utils
-
-
 class CocoEvaluator(object):
     def __init__(self, coco_gt, iou_types):
         assert isinstance(iou_types, (list, tuple))
