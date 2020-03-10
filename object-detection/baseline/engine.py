@@ -7,9 +7,9 @@ import json
 import torchvision.models.detection.mask_rcnn
 from pycocotools.coco import COCO
 
-from torchvision_references_detection.coco_utils import get_coco_api_from_dataset
-from torchvision_references_detection.coco_eval import CocoEvaluator
-import torchvision_references_detection.utils as utils
+from baseline.coco_utils import get_coco_api_from_dataset
+from baseline.coco_eval import CocoEvaluator
+import baseline.utils as utils
 
 
 def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
@@ -139,6 +139,7 @@ def perform_eval_inference(model, data_loader, device):
         if isinstance(targets, dict):
             targets = [targets]
         targets = [{k: v.to(cpu_device).detach().numpy() for k, v in t.items()} for t in targets]
+        outputs = [{k: v.to(cpu_device).detach().numpy() for k, v in o.items()} for o in outputs]
 
         res = {target["image_id"].item(): output for target, output in zip(targets, outputs)}
         evaluator_time = time.time()

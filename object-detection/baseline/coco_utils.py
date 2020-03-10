@@ -10,7 +10,7 @@ import torchvision
 from pycocotools import mask as coco_mask
 from pycocotools.coco import COCO
 
-import torchvision_references_detection.transforms as T
+import baseline.transforms as T
 
 
 class FilterAndRemapCocoCategories(object):
@@ -228,11 +228,17 @@ class CocoDetection(torchvision.datasets.CocoDetection):
 
 
 def get_coco(root, image_set, transforms, mode='instances'):
-    anno_file_template = "{}_{}2017.json"
+    # anno_file_template = "{}_{}2017.json"
+    # PATHS = {
+    #     "train": ("train2017", os.path.join("annotations", anno_file_template.format(mode, "train"))),
+    #     "val": ("val2017", os.path.join("annotations", anno_file_template.format(mode, "val"))),
+    #     # "train": ("val2017", os.path.join("annotations", anno_file_template.format(mode, "val")))
+    # }
+
     PATHS = {
-        "train": ("train2017", os.path.join("annotations", anno_file_template.format(mode, "train"))),
-        "val": ("val2017", os.path.join("annotations", anno_file_template.format(mode, "val"))),
-        # "train": ("val2017", os.path.join("annotations", anno_file_template.format(mode, "val")))
+        "train": ("images", "annotations/vipriors-object-detection-train.json"),
+        "val": ("images", "annotations/vipriors-object-detection-val.json"),
+        "test": ("test-images", "annotations/vipriors-object-detection-test.json"),
     }
 
     t = [ConvertCocoPolysToMask()]
@@ -243,7 +249,8 @@ def get_coco(root, image_set, transforms, mode='instances'):
 
     img_folder, ann_file = PATHS[image_set]
     img_folder = os.path.join(root, img_folder)
-    ann_file = os.path.join(root, ann_file)
+    # ann_file = os.path.join(root, ann_file)
+    ann_file = os.path.join("/home/nfs/robertjanbruin/bulk-home/code/object-detection/data", ann_file)
 
     dataset = CocoDetection(img_folder, ann_file, transforms=transforms)
 

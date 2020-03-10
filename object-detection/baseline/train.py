@@ -28,13 +28,14 @@ import torchvision
 import torchvision.models.detection
 import torchvision.models.detection.mask_rcnn
 
-from coco_utils import get_coco, get_coco_kp
+from baseline.coco_utils import get_coco, get_coco_kp
 
-from group_by_aspect_ratio import GroupedBatchSampler, create_aspect_ratio_groups
-from engine import train_one_epoch, evaluate
+from baseline.group_by_aspect_ratio import GroupedBatchSampler, create_aspect_ratio_groups
+from baseline.engine import train_one_epoch, evaluate
 
-import utils
-import transforms as T
+import baseline.utils as utils
+import baseline.transforms as T
+from baseline.models import models
 
 
 def get_dataset(name, image_set, transform, data_path):
@@ -65,6 +66,7 @@ def main(args):
     # Data loading code
     print("Loading data")
 
+    # NOTE(rjbruin): Modified to use our annotation files
     dataset, num_classes = get_dataset(args.dataset, "train", get_transform(train=True), args.data_path)
     dataset_test, _ = get_dataset(args.dataset, "val", get_transform(train=False), args.data_path)
 
@@ -92,9 +94,9 @@ def main(args):
         sampler=test_sampler, num_workers=args.workers,
         collate_fn=utils.collate_fn)
 
+    # NOTE: Changed model to a custom defined Faster R-CNN with smaller ResNet
     print("Creating model")
-    model = torchvision.models.detection.__dict__[args.model](num_classes=num_classes,
-                                                              pretrained=args.pretrained)
+    model = models[args.model](num_classes=num_classes)
     model.to(device)
 
     model_without_ddp = model
@@ -146,8 +148,7 @@ def main(args):
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser(
-        description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__)
 
     parser.add_argument('--data-path', default='/datasets01/COCO/022719/', help='dataset')
     parser.add_argument('--dataset', default='coco', help='dataset')
@@ -191,7 +192,8 @@ if __name__ == "__main__":
     # distributed training parameters
     parser.add_argument('--world-size', default=1, type=int,
                         help='number of distributed processes')
-    parser.add_argument('--dist-url', default='env://', help='url used to set up distributed training')
+    parser.add_argument('--dist-url', default='tcp://127.0.0.1', help='url used to set up distributed training')
+    parser.add_argument('--dist-port', default='12345')
 
     args = parser.parse_args()
 

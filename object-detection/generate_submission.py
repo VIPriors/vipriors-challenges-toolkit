@@ -14,15 +14,13 @@ import torchvision
 import torchvision.models.detection
 import torchvision.models.detection.mask_rcnn
 
-from coco_utils import get_coco, get_coco_kp
-
-from group_by_aspect_ratio import GroupedBatchSampler, create_aspect_ratio_groups
-from engine import perform_eval_inference
+from baseline.coco_utils import get_coco, get_coco_kp
+from baseline.group_by_aspect_ratio import GroupedBatchSampler, create_aspect_ratio_groups
+from baseline.engine import perform_eval_inference
+import baseline.utils as utils
+import baseline.transforms as T
+from baseline.models import models
 from submission_format import save_as_submissions
-
-import utils
-import transforms as T
-from models import models
 
 
 def get_dataset(name, image_set, transform, data_path):
@@ -55,7 +53,7 @@ def main(args):
 
     # NOTE(rjbruin): Modified to use our annotation files
     # dataset, num_classes = get_dataset(args.dataset, "train", get_transform(train=True), args.data_path)
-    dataset_test, num_classes = get_dataset(args.dataset, "test", get_transform(train=False), args.data_path)
+    dataset_test, num_classes = get_dataset(args.dataset, args.split, get_transform(train=False), args.data_path)
 
     print("Creating data loaders")
     if args.distributed:
@@ -134,7 +132,8 @@ if __name__ == "__main__":
     parser.add_argument('--dist-port', default='12345')
 
     # CUSTOM
-    parser.add_argument('--file', default='submission.json', help='Filename for submission file.')
+    parser.add_argument('--split', default='test', help='Dataset split to generate predictions for.')
+    parser.add_argument('--file', default='submission', help='Filename for submission file (without file extension).')
 
     args = parser.parse_args()
 

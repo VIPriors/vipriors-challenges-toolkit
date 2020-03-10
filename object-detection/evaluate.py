@@ -16,7 +16,7 @@ import sys
 import time
 
 from pycocotools.coco import COCO
-from torchvision_references_detection.coco_eval import CocoEvaluator
+from baseline.coco_eval import CocoEvaluator
 
 
 OUTPUT_FILE = 'scores.txt'
