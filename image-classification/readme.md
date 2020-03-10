@@ -10,7 +10,7 @@ This challenge is the image classification challenge. We provide a subset of the
 
 The task to be performed is image classification, predicting class labels. The training and validation data are subsets of the training split of the Imagenet 2012. The test set is taken from the validation split of the Imagenet 2012 dataset.
 
-As a note: ** DO NOT train on Imagenet validation data**. Please use the tooling described here to set up your training, validation and test data to avoid accidentally training on test data.
+As a note: **DO NOT train on Imagenet validation data**. Please use the tooling described here to set up your training, validation and test data to avoid accidentally training on test data.
 
 
 ## Validation
@@ -129,4 +129,4 @@ For submission you can use example code:
 
 You need to submit a .csv file as the format of Figure below:
 
-![csv_example.png](:/8cdb567d96cf494e84d2317ee3353c59)
+![csv_example](csv_example.png)
