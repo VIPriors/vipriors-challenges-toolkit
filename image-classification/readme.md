@@ -22,7 +22,7 @@ We provide an evaluation script to test your model over the validation set. Note
 In order to use the dataset, first you need to download to ImageNet dataset (2012). After that, you need to run the python script below: 
 `python3 generate_images.py <imagenet_train_directory_path> <imagenet_50_directory_path>`
 Example:
-`(python3 generate_images.py "/home/user/imagenet/train" "/home/user/vipriors/" )`
+`python3 generate_images.py "/home/user/imagenet/train" "/home/user/vipriors/"`
 
 # Submission
 
@@ -30,7 +30,7 @@ The evaluation server is hosted using CodaLab. Submitting to the challenge requi
 [
 Please find the evaluation server here.](https://competitions.codalab.org/competitions/23661)
 
-To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set (see data README for how to get these images) 
+To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set. 
 
 # Baselines
 
@@ -111,7 +111,7 @@ Single node, multi-gpu training:
 
 For submission you can use example code:
 
-`%run main.py -a resnet50 -sub True -t --resume '50/resnet50_checkpoint.pth.tar' imagenet_50`
+`python main.py -a resnet50 -sub True -t --resume '50/resnet50_checkpoint.pth.tar' imagenet_50`
 
 ## 2. Full-Convolution:
 
@@ -123,7 +123,7 @@ The usage of Full-Conv is similar as Same-Conv. You only need to change the arch
 
 For submission you can use example code:
 
-`%run main.py -a resnet50_FConv -sub True -t  --resume '50/resnet50_FConv_checkpoint.pth.tar' imagenet_50 `
+`python main.py -a resnet50_FConv -sub True -t  --resume '50/resnet50_FConv_checkpoint.pth.tar' imagenet_50 `
 
 # Evaluation
 
