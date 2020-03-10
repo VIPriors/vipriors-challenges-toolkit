@@ -22,7 +22,7 @@ We provide an evaluation script to test your model over the validation set. Note
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 
-~~Please find the evaluation server here~~. *The evaluation server will soon be opened.*
+[Please find the evaluation server here.](https://competitions.codalab.org/competitions/23661)
 
 To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set (see [data README](data/README.md) for how to get these images) and using the provided `submission_format.py` module to store the predictions. You can also refer to the baseline code in `baseline.py`, which includes example code on how to store prediction results as a submission file.
 
@@ -42,10 +42,26 @@ The submissions file is a JSON encoding of a list of bounding box predictions. T
 
 ## Baselines
 
-*Short description of the baseline.*
+We trained a simple baseline model: a Faster R-CNN model with ResNet-18 FPN backbone, trained from scratch for 51 epochs with initial learning rate `0.02` and decay at epoch 48.
 
-| **model**           | **checkpoint** | **// METRIC //** |
+| **model**           | **checkpoint** | **Test set AP @ 0.50:0.95** |
 | ------------------- | -------------- | ---------------- |
-| YOUR FANCY BASELINE | SOME PATH      | SOME VALUE       |
+| Faster R-CNN ResNet-18 FPN | [Download checkpoint](https://competitions.codalab.org/my/datasets/download/bc13517e-5ef7-4dda-b649-2d6a0d62a7eb)      | 0.049       |
 
-*Instructions on adapting the baseline*.
+The baseline models may be used as checkpoints from which to fine-tune. Please note this is the **only exception** to the rule which forbids fine-tuning.
+
+### Training or fine-tuning baselines
+
+*NOTE: this code is originally from the [Torchvision object detection finetuning tutorial](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html). It has been modified in places to accomodate our needs. Please see the license terms in the top directory of the repository.*
+
+These are example commands to use to train or fine-tune the provided baselines.
+
+**Faster R-CNN - ResNet-18 FPN backbone**
+
+Execute this from the `object-detection` folder:
+
+```
+python -m torch.distributed.launch --nproc_per_node=8 --use_env train_baseline.py\
+    --dataset coco --model fasterrcnn_resnet18_fpn --epochs 26\
+    --lr-steps 16 22 --aspect-ratio-group-factor 3
+```
