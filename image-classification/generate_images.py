@@ -1,11 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Tue Mar 10 15:27:12 2020
-
-@author: osman
+Arrange training, validation and test data for VIPriors image classification
+challenge.
 """
-
 
 import os
 import shutil
