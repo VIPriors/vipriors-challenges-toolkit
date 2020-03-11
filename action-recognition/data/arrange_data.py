@@ -6,7 +6,6 @@ import os
 from zipfile import ZipFile
 import math
 import shutil
-import random
 
 
 if __name__ == '__main__':
@@ -34,17 +33,13 @@ if __name__ == '__main__':
         os.makedirs(new_ann_dir)
 
     cls_lst = list()
-    ind_lst = list()
-    with open('./ucfTrainTestlist/classInd.txt', 'r') as cls_f:
+    new_ind_lst = list()
+    with open(new_cls_file, 'r') as cls_f:
         cls_ind = cls_f.readlines()
 
     for line in cls_ind:
-        ind_lst.append(line.split(' ')[0])
+        new_ind_lst.append(line.split(' ')[0])
         cls_lst.append(line.split(' ')[1].split('\n')[0])
-
-    new_ind_lst = ind_lst[:]
-    random.seed(1992)
-    random.shuffle(new_ind_lst)
 
     with open(new_cls_file, 'w') as f:
         for i, val in enumerate(new_ind_lst):
@@ -67,7 +62,7 @@ if __name__ == '__main__':
     mod_ucf101_gt_train = dict()
     mod_ucf101_gt_val = dict()
     if not os.path.exists(new_videos_dir):
-        os.mkdir(new_videos_dir)
+        os.makedirs(new_videos_dir)
     for c, v in orig_gt_train.items():
         n_train_vid = math.ceil(len(v) / 2)
         mod_ucf101_gt_train[c] = v[0:n_train_vid]
@@ -80,9 +75,11 @@ if __name__ == '__main__':
                 vid_idx = vid_idx + 1
                 name = clip.split(' ')[0]
                 idx = int(clip.split(' ')[1])
+                cls = name.split('/')[0]
+                new_idx = new_ind_lst[cls_lst.index(cls)]
                 new_name = f'video_train_{vid_idx:07}.avi'
                 shutil.copy(f'{ucf_dir}{name}', f'{new_videos_dir}{new_name}')
-                new_train_f.write(f'{new_name} {new_ind_lst[idx - 1]}\n')
+                new_train_f.write(f'{new_name} {new_idx}\n')
 
     vid_idx = 0
     with open(new_val_file, 'w') as new_val_f:
@@ -91,9 +88,11 @@ if __name__ == '__main__':
                 vid_idx = vid_idx + 1
                 name = clip.split(' ')[0]
                 idx = int(clip.split(' ')[1])
+                cls = name.split('/')[0]
+                new_idx = new_ind_lst[cls_lst.index(cls)]
                 new_name = f'video_validation_{vid_idx:07}.avi'
                 shutil.copy(f'{ucf_dir}{name}', f'{new_videos_dir}{new_name}')
-                new_val_f.write(f'{new_name} {new_ind_lst[idx - 1]}\n')
+                new_val_f.write(f'{new_name} {new_idx}\n')
 
     with open('./ucfTrainTestlist/testlist01.txt', 'r') as test_f:
         lines = test_f.readlines()
