@@ -468,7 +468,7 @@ def testing(test_loader, model, criterion, args):
         predictions = np.reshape(predictions,(predictions.shape[0], predictions.shape[1]))
         import pandas
         df = pandas.DataFrame(data={"Image IDs": predictions[:,0], "Predictions": predictions[:,1]})
-        df.to_csv("./submission_output.csv", sep=',',index=False)
+        df.to_csv("./submission.csv", sep=',',index=False)
 
 def class_specific_res(val_loader, model, criterion, args):
     batch_time = AverageMeter()
