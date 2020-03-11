@@ -28,7 +28,7 @@ Example:
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 [
-Please find the evaluation server here.](https://competitions.codalab.org/competitions/23661)
+Please find the evaluation server here.](https://competitions.codalab.org/competitions/23713)
 
 To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set. 
 
