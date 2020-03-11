@@ -42,7 +42,7 @@ We trained 2 simple baseline models: a Resnet-50 with Same-Conv and Full-Conv mo
 | Resnet-50 Same-Conv |      -     |         26.39        |
 
 # Sample Code
-If you want to check the baselines, we provide two baseline models with pytorch implementation which support multi-gpu training.
+If you want to check the baselines, we provide two baseline models with pytorch implementation which supports multi-gpu training.
 
 You can also refer to the baseline code in `main.py`, which includes example code on how to store prediction results as a submission file.
 
