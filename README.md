@@ -5,8 +5,10 @@ Collection of tools to support submissions to the [1st VIPriors workshop challen
 
 Please find the toolkit for each challenge here:
 
+- [Image Classification](image-classification/readme.md)
+- [Semantic Segmentation](semantic-segmentation/README.md)
 - [Object Detection](object-detection/README.md)
-- ...
+- [Action Recognition](action-recognition/README.md)
 
 ## Contributing challenges
 
