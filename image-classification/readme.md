@@ -8,7 +8,7 @@ This challenge is the image classification challenge. We provide a subset of the
 
 # Dataset
 
-The task to be performed is image classification, predicting class labels. The training and validation data are subsets of the training split of the Imagenet 2012. The test set is taken from the validation split of the Imagenet 2012 dataset. We generated training and validation subset from original trainining set, each includes 50 images per class, and used the validation set of original set as new testing set.  
+The task to be performed is image classification, predicting class labels. The training and validation data are subsets of the training split of the Imagenet 2012. The test set is taken from the validation split of the Imagenet 2012 dataset. Each data set includes **50 images per class**.
 
 As a note: **DO NOT train on Imagenet validation data**. Please use the tooling described here to set up your training, validation and test data to avoid accidentally training on test data.
 
