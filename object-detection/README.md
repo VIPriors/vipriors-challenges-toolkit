@@ -4,7 +4,7 @@
 
 We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer four challenges, where models are to be trained from scratch, and we reduce the number of training samples to a fraction of the full set. The winners of each challenge are invited to present their winning method at the VIPriors workshop presentation at ECCV 2020.
 
-This challenge is the object detection challenge. We provide a subset of the MS COCO dataset to train on. We will evaluate all models submitted to the challenge on MS COCO validation data.
+This challenge is the object detection challenge. We provide a subset of ~6k images from the MS COCO dataset to train on. We will evaluate all models submitted to the challenge on MS COCO validation data.
 
 ## Datasets
 
