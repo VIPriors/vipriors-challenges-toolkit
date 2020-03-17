@@ -115,7 +115,7 @@ For submission you can use example code:
 
 ## 2. Full-Convolution:
 
-This implementation includes pytorch Resnet and VGG architectures with Full-Convolution (more information please check the CVPR 2020 paper: "On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location")
+This implementation includes pytorch Resnet and VGG architectures with Full-Convolution (more information please check the CVPR 2020 paper: ["On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location"](https://arxiv.org/abs/2003.07064))
 
 The usage of Full-Conv is similar as Same-Conv. You only need to change the architecture name.
 
