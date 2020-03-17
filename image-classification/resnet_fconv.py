@@ -8,7 +8,7 @@
 # O. S. Kayhan and J. van Gemert,
 # "On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location"
 # In CVPR, 2020. 
-#
+# https://arxiv.org/abs/2003.07064
 # ==========================================================================================
 
 import torch
