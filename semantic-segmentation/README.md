@@ -32,6 +32,8 @@ You can now run `python baseline.py` to train the baseline model as described be
 
 #### Evaluation
 
+The evaluation criteria are the same as used for the [Cityscapes Pixel-Level Semantic Labeling Task](https://www.cityscapes-dataset.com/benchmarks/#scene-labeling-task). The main metric used to rank submissions is the mean Intersection-over-Union (mIoU). Please refer to the [class definitions as described here](https://www.cityscapes-dataset.com/dataset-overview/#class-definitions) to see which classes are included in the evaluation.
+
 We provide an evaluation script to test your model over the validation set. Note that this script cannot be used to evaluate models over the testing set, as we do not provide labels for the test set. It is good practice to ensure your predictions work with this script, as the same script is used on the evaluation server.
 
 Run `python evaluate.py` to evaulate the predictions in your `results` directory. This creates a `results.txt` files containing the metrics used for the challenge leaderboard and a `results.json` file containing a more detailed evaluation.
