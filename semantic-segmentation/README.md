@@ -42,7 +42,7 @@ Run `python evaluate.py` to evaulate the predictions in your `results` directory
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 
-~~Please find the evaluation server here~~. *The evaluation server will soon be opened.*
+[Please find the evaluation server here.](https://competitions.codalab.org/competitions/23712)
 
 To participate in the challenge one uploads a .zip file to the evaluation server containing all predictions over the challenge test set in .png format. This is essentially a zipped version of the files in the `results` directory. Please ensure that your .zip file only contains the .png.
 
