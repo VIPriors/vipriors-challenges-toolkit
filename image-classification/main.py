@@ -163,8 +163,6 @@ def main_worker(gpu, ngpus_per_node, args):
         model = models.__dict__[args.arch](pretrained=True)
     else:
         print("=> creating model '{}'".format(args.arch))
-        #model = models.__dict__[args.arch]()
-#        import vgg_fconv
 
         if(args.arch=='vgg16_bn_FConv'):
             print('vgg16_bn_FConv')
@@ -523,11 +521,6 @@ def class_specific_res(val_loader, model, criterion, args):
     np.save('predicted_labels',pre)
 
     return top1.avg
-
-#def save_checkpoint(state, is_best,args, filename='_checkpoint.pth.tar'):
-#    torch.save(state, args.arch+filename)
-#    if is_best:
-#        shutil.copyfile(args.arch+filename, args.arch+'_model_best.pth.tar')
 
 def save_checkpoint(state, is_best,args, filename='_checkpoint.pth.tar'):
     torch.save(state, args.size+'/'+args.arch+filename)
