@@ -4,6 +4,9 @@ object-detection/data/generate/*
 # CUSTOM: ignore data
 object-detection/data/images/*
 
+# CUSTOM: ignore mac files
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

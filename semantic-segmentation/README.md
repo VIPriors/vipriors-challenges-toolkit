@@ -32,6 +32,8 @@ You can now run `python baseline.py` to train the baseline model as described be
 
 #### Evaluation
 
+The evaluation criteria are the same as used for the [Cityscapes Pixel-Level Semantic Labeling Task](https://www.cityscapes-dataset.com/benchmarks/#scene-labeling-task). The main metric used to rank submissions is the mean Intersection-over-Union (mIoU). Please refer to the [class definitions as described here](https://www.cityscapes-dataset.com/dataset-overview/#class-definitions) to see which classes are included in the evaluation.
+
 We provide an evaluation script to test your model over the validation set. Note that this script cannot be used to evaluate models over the testing set, as we do not provide labels for the test set. It is good practice to ensure your predictions work with this script, as the same script is used on the evaluation server.
 
 Run `python evaluate.py` to evaulate the predictions in your `results` directory. This creates a `results.txt` files containing the metrics used for the challenge leaderboard and a `results.json` file containing a more detailed evaluation.
@@ -40,7 +42,7 @@ Run `python evaluate.py` to evaulate the predictions in your `results` directory
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 
-~~Please find the evaluation server here~~. *The evaluation server will soon be opened.*
+[Please find the evaluation server here.](https://competitions.codalab.org/competitions/23712)
 
 To participate in the challenge one uploads a .zip file to the evaluation server containing all predictions over the challenge test set in .png format. This is essentially a zipped version of the files in the `results` directory. Please ensure that your .zip file only contains the .png.
 

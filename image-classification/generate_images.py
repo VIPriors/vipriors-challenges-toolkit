@@ -11,7 +11,6 @@ import time
 from tqdm import tqdm
 import glob
 import pickle
-random.seed(1988)
 
 def listdir_fullpath(d):
     return [os.path.join(d, f) for f in os.listdir(d)]
@@ -74,7 +73,7 @@ if __name__ == '__main__':
                     val_file_name = val_dir_name + "/" + os.path.basename(val_file[1])
                     shutil.copy2(main_traindir_path+ '/'+train_file[0] + '/'+val_file[1], val_file_name)
                 else:
-                    break
+                    continue
                 
     for idx, old_name in tqdm( enumerate(test)):
         test_file_name = test_dir + "/" + os.path.basename(main_valdir_path+'/'+old_name)

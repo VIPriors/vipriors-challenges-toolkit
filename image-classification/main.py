@@ -8,7 +8,7 @@
 # O. S. Kayhan and J. van Gemert,
 # "On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location"
 # In CVPR, 2020. 
-#
+# https://arxiv.org/abs/2003.07064
 # ==========================================================================================
 
 import argparse
@@ -163,8 +163,6 @@ def main_worker(gpu, ngpus_per_node, args):
         model = models.__dict__[args.arch](pretrained=True)
     else:
         print("=> creating model '{}'".format(args.arch))
-        #model = models.__dict__[args.arch]()
-#        import vgg_fconv
 
         if(args.arch=='vgg16_bn_FConv'):
             print('vgg16_bn_FConv')
@@ -468,7 +466,7 @@ def testing(test_loader, model, criterion, args):
         predictions = np.reshape(predictions,(predictions.shape[0], predictions.shape[1]))
         import pandas
         df = pandas.DataFrame(data={"Image IDs": predictions[:,0], "Predictions": predictions[:,1]})
-        df.to_csv("./submission_output.csv", sep=',',index=False)
+        df.to_csv("./submission.csv", sep=',',index=False)
 
 def class_specific_res(val_loader, model, criterion, args):
     batch_time = AverageMeter()
@@ -523,11 +521,6 @@ def class_specific_res(val_loader, model, criterion, args):
     np.save('predicted_labels',pre)
 
     return top1.avg
-
-#def save_checkpoint(state, is_best,args, filename='_checkpoint.pth.tar'):
-#    torch.save(state, args.arch+filename)
-#    if is_best:
-#        shutil.copyfile(args.arch+filename, args.arch+'_model_best.pth.tar')
 
 def save_checkpoint(state, is_best,args, filename='_checkpoint.pth.tar'):
     torch.save(state, args.size+'/'+args.arch+filename)

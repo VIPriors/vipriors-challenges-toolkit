@@ -8,7 +8,7 @@
 # O. S. Kayhan and J. van Gemert,
 # "On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location"
 # In CVPR, 2020. 
-#
+# https://arxiv.org/abs/2003.07064
 # ==========================================================================================
 
 import torch
@@ -108,13 +108,9 @@ class Bottleneck(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample
         self.stride = stride
-        #if stride==1:
-            #self.down_pad = nn.ZeroPad2d(1)
-        #elif stride==2:
         self.down_pad = nn.ZeroPad2d(1)
         self.normal_pad = nn.ZeroPad2d(1)
 
-        #self.zero_pad_I = nn.ZeroPad2d(2)
     def forward(self, x):
         identity = x
 
@@ -175,10 +171,9 @@ class ResNet(nn.Module):
                                        dilate=replace_stride_with_dilation[1])
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2,
                                        dilate=replace_stride_with_dilation[2])
-        self.avgpool = nn.AdaptiveMaxPool2d((1, 1))
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(512 * block.expansion, num_classes)
         self.zeropad = nn.ZeroPad2d(2)
-#        self.refpad7 = nn.ReflectionPad2d(7)
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')

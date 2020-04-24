@@ -8,7 +8,7 @@ This challenge is the image classification challenge. We provide a subset of the
 
 # Dataset
 
-The task to be performed is image classification, predicting class labels. The training and validation data are subsets of the training split of the Imagenet 2012. The test set is taken from the validation split of the Imagenet 2012 dataset.
+The task to be performed is image classification, predicting class labels. The training and validation data are subsets of the training split of the Imagenet 2012. The test set is taken from the validation split of the Imagenet 2012 dataset. Each data set includes **50 images per class**.
 
 As a note: **DO NOT train on Imagenet validation data**. Please use the tooling described here to set up your training, validation and test data to avoid accidentally training on test data.
 
@@ -28,7 +28,7 @@ Example:
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 [
-Please find the evaluation server here.](https://competitions.codalab.org/competitions/23661)
+Please find the evaluation server here.](https://competitions.codalab.org/competitions/23713)
 
 To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set. 
 
@@ -42,7 +42,7 @@ We trained 2 simple baseline models: a Resnet-50 with Same-Conv and Full-Conv mo
 | Resnet-50 Same-Conv |      -     |         26.39        |
 
 # Sample Code
-If you want to check the baselines, we provide two baseline models with pytorch implementation which support multi-gpu training.
+If you want to check the baselines, we provide two baseline models with pytorch implementation which supports multi-gpu training.
 
 You can also refer to the baseline code in `main.py`, which includes example code on how to store prediction results as a submission file.
 
@@ -115,7 +115,7 @@ For submission you can use example code:
 
 ## 2. Full-Convolution:
 
-This implementation includes pytorch Resnet and VGG architectures with Full-Convolution (more information please check the CVPR 2020 paper: "On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location")
+This implementation includes pytorch Resnet and VGG architectures with Full-Convolution (more information please check the CVPR 2020 paper: ["On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location"](https://arxiv.org/abs/2003.07064))
 
 The usage of Full-Conv is similar as Same-Conv. You only need to change the architecture name.
 

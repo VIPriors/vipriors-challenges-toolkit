@@ -8,7 +8,7 @@
 # O. S. Kayhan and J. van Gemert,
 # "On Translation Invariance in CNNs: Convolutional Layers can Exploit Absolute Spatial Location"
 # In CVPR, 2020. 
-#
+# https://arxiv.org/abs/2003.07064
 # ==========================================================================================
 import torch
 import torch.nn as nn
@@ -79,7 +79,7 @@ def make_layers(cfg, batch_norm=False):
         if v == 'M':
             layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
         else:
-            conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=2)#, bias=None)
+            conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=2)
             if batch_norm:
                 layers += [conv2d, nn.BatchNorm2d(v), nn.ReLU(inplace=True)]
             else:
