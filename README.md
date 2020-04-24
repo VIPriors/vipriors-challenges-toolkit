@@ -14,13 +14,13 @@ Please find the toolkit for each challenge here:
 
 **All challenges**
 
-Q: Is it allowed to train our model on the validation data?
+Q: Is it allowed to train our model on the validation data?<br />
 A: Yes.
 
-Q: Is data augmentation allowed?
+Q: Is data augmentation allowed?<br />
 A: Yes, as long as the augmentations are only applied to the provided data.
 
 **Object detection**
 
-Q: Can we use the semantic segmentation labels?
+Q: Can we use the semantic segmentation labels?<br />
 A: No.
