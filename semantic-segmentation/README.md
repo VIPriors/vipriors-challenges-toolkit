@@ -10,13 +10,13 @@ This challenge is the semantic segmentation challenge. We provide a subset of th
 
 The task to be performed is semantic segmentation. The training and validation data are subsets of the training split of the Cityscapes dataset. The test set is taken from the validation split of the Cityscapes dataset.
 
-As a note: **Do not use the original Cityscapes validation set in training or validating your model!** Any usage of the validation set in constructing your model is in violation of the challenge rules and may result in disqualification.
+As a note: **Do not use the original Cityscapes dataset in training or validating your model!** Any usage of external data in constructing your model is in violation of the challenge rules and may result in disqualification.
 
 ## Setup
 
 #### Dataset
 
-Please follow the instructions below to set up the data for this challenge. The tooling provided automatically arranges the data into appropriate training, validation and testing sets.
+Please follow the instructions below to set up the data for this challenge. The tooling provided automatically arranges the data into appropriate training, validation and testing sets of 200, 100 and 200 images, respectively.
 
 These are the instructions for setting up the data for the VIPriors object detection challenge.
 
