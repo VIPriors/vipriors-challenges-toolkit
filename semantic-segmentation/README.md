@@ -52,7 +52,7 @@ We provide a PyTorch implementation of [U-Net](https://arxiv.org/abs/1505.04597)
 
 The baseline performance on the provided validation set is given in the table below (results may vary):
 
-| U-Net w/ Batch Normalization | checkpoint_path |
+| Metric | Score |
 | ---------------------------- | --------------- |
 | IoU Class                    | 0.40            |
 | iIoU Class                   | 0.19            |
