@@ -50,12 +50,12 @@ To participate in the challenge one uploads a .zip file to the evaluation server
 
 We provide a PyTorch implementation of [U-Net](https://arxiv.org/abs/1505.04597) with Batch Normalization. To train and evaluate the model on the MiniCity dataset, run `python baseline.py`. Note: the scripts assumes that a GPU is available in your system. Training for 200 epochs takes approximately 2:15 hours on a system with a GeForce GTX 1080 Ti GPU.
 
-The baseline performance on the provided validation set is given in the table below:
+The baseline performance on the provided validation set is given in the table below (results may vary):
 
 | U-Net w/ Batch Normalization | checkpoint_path |
 | ---------------------------- | --------------- |
-| IoU Class                    | 0.36            |
-| iIoU Class                   | 0.16            |
-| IoU Category                 | 0.71            |
-| iIou Category                | 0.53            |
-| Accuracy                     | 0.77            |
+| IoU Class                    | 0.40            |
+| iIoU Class                   | 0.19            |
+| IoU Category                 | 0.72            |
+| iIou Category                | 0.55            |
+| Accuracy                     | 0.78            |
