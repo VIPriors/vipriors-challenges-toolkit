@@ -35,21 +35,21 @@ parser.add_argument('--scale_factor', metavar='0.3', default=0.3,
                     type=float, help='data augmentation: random scale factor')
 parser.add_argument('--hflip', metavar='[True,False]', default=True,
                     type=float, help='data augmentation: random horizontal flip')
-parser.add_argument('--crop_size', metavar='(384,768)', default=(384,768),
-                    type=tuple, help='data augmentation: random crop size')
-parser.add_argument('--train_size', metavar='(512,1024)', default=(512,1024),
-                    type=tuple, help='image size during training')
-parser.add_argument('--test_size', metavar='(512,1024)', default=(512,1024),
-                    type=tuple, help='image size during validation and testing')
+parser.add_argument('--crop_size', metavar='384 768', default=[384,768], nargs="+",
+                    type=int, help='data augmentation: random crop size, height width, space separated')
+parser.add_argument('--train_size', metavar='512 1024', default=[512,1024], nargs="+",
+                    type=int, help='image size during training, height width, space separated')
+parser.add_argument('--test_size', metavar='512 1024', default=[512,1024], nargs="+",
+                    type=int, help='image size during validation and testing, height width, space separated')
 parser.add_argument('--batch_size', metavar='5', default=5, type=int, help='batch size')
 parser.add_argument('--pin_memory', metavar='[True,False]', default=True,
                     type=bool, help='pin memory on GPU')
 parser.add_argument('--num_workers', metavar='8', default=8, type=int,
                     help='number of dataloader workers')
 parser.add_argument('--lr_init', metavar='1e-2', default=1e-2, type=float,
-                    help='number of dataloader workers')
+                    help='initial learning rate')
 parser.add_argument('--lr_min', metavar='1e-5', default=1e-5, type=float,
-                    help='number of dataloader workers')
+                    help='lower bound on learning rate')
 parser.add_argument('--lr_patience', metavar='5', default=5, type=int,
                     help='patience for reduce learning rate on plateau')
 parser.add_argument('--lr_momentum', metavar='0.9', default=0.9, type=float,
@@ -81,6 +81,9 @@ Main method
 def main(): 
     global args
     args = parser.parse_args()
+    args.crop_size = tuple(args.crop_size)
+    args.train_size = tuple(args.train_size)
+    args.test_size = tuple(args.test_size)
 
     # Fix seed
     if args.seed is not None:
@@ -135,6 +138,11 @@ def main():
                'val_loss' : [],
                'miou' : []}
     start_epoch = 0
+
+    # Push model to GPU
+    if torch.cuda.is_available():
+        model = torch.nn.DataParallel(model).cuda()
+        print('Model pushed to {} GPU(s), type {}.'.format(torch.cuda.device_count(), torch.cuda.get_device_name(0)))
     
     # Resume training from checkpoint
     if args.weights:
@@ -145,11 +153,6 @@ def main():
         metrics = checkpoint['metrics']
         best_miou = checkpoint['best_miou']
         start_epoch = checkpoint['epoch']+1
-        
-    # Push model to GPU
-    if torch.cuda.is_available():
-        model = torch.nn.DataParallel(model).cuda()
-        print('Model pushed to {} GPU(s), type {}.'.format(torch.cuda.device_count(), torch.cuda.get_device_name(0)))
 
     # No training, only running prediction on test set
     if args.predict:
