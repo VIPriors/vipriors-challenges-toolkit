@@ -1,6 +1,6 @@
 # VIPriors Action Recognition Challenge - Data
 
-The VIPRiors Action Recognition Challenge uses a modification of the [UCF101](https://www.crcv.ucf.edu/data/UCF101.php) action recognition dataset. Please:
+The VIPRiors Action Recognition Challenge uses a modification of the [UCF101](https://www.crcv.ucf.edu/research/data-sets/ucf101/) action recognition dataset. Please:
 
 - **Do not use the original distribution of the UCF101 dataset.** 
 - **DO NOT PRETRAIN your models on any dataset.** 
