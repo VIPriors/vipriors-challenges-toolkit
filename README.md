@@ -14,6 +14,9 @@ Please find the toolkit for each challenge here:
 
 **All challenges**
 
+Q: Can we use any other data than the data provdided?
+A: No.
+
 Q: Is it allowed to train our model on the validation data?<br />
 A: Yes.
 
