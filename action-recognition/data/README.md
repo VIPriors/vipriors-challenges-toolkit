@@ -12,9 +12,9 @@ Violating this restrictions may result in disqualification. Additionally, the ch
 
 The tooling provided automatically rearrange the original dataset to the modified version with its ground truth files (only labels for train and validation are provided). Follow the instructions below to set up the data for this challenge:
 
-1. Download the original dataset from [here](https://www.crcv.ucf.edu/data/UCF101/UCF101.rar).
+1. Download the original dataset from [here](https://www.crcv.ucf.edu/datasets/human-actions/ucf101/UCF101.rar).
 2. Extract the content of the .rar file to this directory. You have to see the UCF101 directory with all action directories inside. If, for whatever reason, the extracted folder has a different name, please rename it to UCF101. This is the directory the data toolkit will look for.
-3. Download the original annotations from [here](https://www.crcv.ucf.edu/data/UCF101/UCF101TrainTestSplits-RecognitionTask.zip). and put the .zip file in this directory.
+3. Download the original annotations from [here](https://www.crcv.ucf.edu/wp-content/uploads/2019/03/UCF101TrainTestSplits-RecognitionTask.zip). and put the .zip file in this directory.
 4. Run "arrange_data.py" script: `python arrange_data.py` (it may take a while to finish)
 
 Once the script has been executed, you will have a new directory `mod-ucf101/` with the following structure:
