@@ -3,6 +3,11 @@ object-detection/data/generate/*
 
 # CUSTOM: ignore data
 object-detection/data/images/*
+object-detection/data/test-images/*
+object-detection/data/annotations/*
+
+# CUSTOM: ignore exported bundles
+*.zip
 
 # CUSTOM: ignore mac files
 .DS_Store
@@ -136,3 +141,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# VSCode
+.vscode/
