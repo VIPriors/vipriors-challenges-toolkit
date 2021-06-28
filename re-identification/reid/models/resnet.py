@@ -45,10 +45,10 @@ class ResNet(nn.Module):
             if self.has_embedding:
                 self.feat = nn.Linear(out_planes, self.num_features)
                 self.feat_bn = nn.BatchNorm1d(self.num_features)
-                init.kaiming_normal(self.feat.weight, mode='fan_out')
-                init.constant(self.feat.bias, 0)
-                init.constant(self.feat_bn.weight, 1)
-                init.constant(self.feat_bn.bias, 0)
+                init.kaiming_normal_(self.feat.weight, mode='fan_out')
+                init.constant_(self.feat.bias, 0)
+                init.constant_(self.feat_bn.weight, 1)
+                init.constant_(self.feat_bn.bias, 0)
             else:
                 # Change the num_features to CNN output channels
                 self.num_features = out_planes
@@ -56,8 +56,8 @@ class ResNet(nn.Module):
                 self.drop = nn.Dropout(self.dropout)
             if self.num_classes > 0:
                 self.classifier = nn.Linear(self.num_features, self.num_classes)
-                init.normal(self.classifier.weight, std=0.001)
-                init.constant(self.classifier.bias, 0)
+                init.normal_(self.classifier.weight, std=0.001)
+                init.constant_(self.classifier.bias, 0)
 
         if not self.pretrained:
             self.reset_params()
@@ -90,16 +90,16 @@ class ResNet(nn.Module):
     def reset_params(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                init.kaiming_normal(m.weight, mode='fan_out')
+                init.kaiming_normal_(m.weight, mode='fan_out')
                 if m.bias is not None:
-                    init.constant(m.bias, 0)
+                    init.constant_(m.bias, 0)
             elif isinstance(m, nn.BatchNorm2d):
-                init.constant(m.weight, 1)
-                init.constant(m.bias, 0)
+                init.constant_(m.weight, 1)
+                init.constant_(m.bias, 0)
             elif isinstance(m, nn.Linear):
-                init.normal(m.weight, std=0.001)
+                init.normal_(m.weight, std=0.001)
                 if m.bias is not None:
-                    init.constant(m.bias, 0)
+                    init.constant_(m.bias, 0)
 
 
 def resnet18(**kwargs):

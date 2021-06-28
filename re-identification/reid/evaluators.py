@@ -61,7 +61,8 @@ def pairwise_distance(features, query=None, gallery=None, metric=None):
         y = metric.transform(y)
     dist = torch.pow(x, 2).sum(dim=1, keepdim=True).expand(m, n) + \
            torch.pow(y, 2).sum(dim=1, keepdim=True).expand(n, m).t()
-    dist.addmm_(1, -2, x, y.t())
+    dist.addmm_(x, y.t(), beta=1, alpha=-2)
+    # dist.addmm_(1, -2, x, y.t())
     return dist
 
 

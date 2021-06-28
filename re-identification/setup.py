@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-setup(name='open-reid',
+setup(name='vipriors-reid',
       version='0.0.1',
       description='Deep Learning Library for Person Re-identification for the VIPriors Challenge',
       author='Davide Zambrano',
@@ -9,9 +9,9 @@ setup(name='open-reid',
       url='https://github.com/VIPriors/vipriors-challenges-toolkit',
       license='MIT',
       install_requires=[
-          'numpy==1.16.4', 'scipy', 'torch==1.8.1', 'torchvision',
+          'numpy', 'scipy', 'torch==1.8.1', 'torchvision',
           'six', 'h5py', 'Pillow',
-          'scikit-learn==0.20.3', 'metric-learn==0.4.0'],
+          'scikit-learn', 'metric-learn'],
       extras_require={
           'docs': ['sphinx', 'sphinx_rtd_theme'],
       },

@@ -27,4 +27,3 @@ class DistanceMetric(object):
         else:
             X = self.metric.transform(X)
         return X
-

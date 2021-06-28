@@ -22,7 +22,7 @@ Install [PyTorch](http://pytorch.org/).
 ```shell
 git clone https://github.com/VIPriors/vipriors-challenges-toolkit
 cd vipriors-challenges-toolkit/re-identification
-python setup.py install
+pip install -e .
 ```
 
 ## Examples
