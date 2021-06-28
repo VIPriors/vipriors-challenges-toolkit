@@ -15,13 +15,13 @@ class DistanceMetric(object):
     def train(self, model, data_loader):
         if self.algorithm == 'euclidean': return
         features, labels = extract_features(model, data_loader)
-        features = torch.stack(features.values()).numpy()
-        labels = torch.Tensor(list(labels.values())).numpy()
+        features = torch.stack(list(features.values())).cpu().detach().numpy()
+        labels = torch.Tensor(list(labels.values())).cpu().detach().numpy()
         self.metric.fit(features, labels)
 
     def transform(self, X):
         if torch.is_tensor(X):
-            X = X.numpy()
+            X = X.cpu().detach().numpy()
             X = self.metric.transform(X)
             X = torch.from_numpy(X)
         else:

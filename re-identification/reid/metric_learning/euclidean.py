@@ -1,12 +1,18 @@
 from __future__ import absolute_import
 
 import numpy as np
-from metric_learn.base_metric import BaseMetricLearner, MahalanobisMixin
+from metric_learn.base_metric import BaseMetricLearner
 
 
-class Euclidean(MahalanobisMixin):
+class Euclidean(BaseMetricLearner):
     def __init__(self):
         self.M_ = None
+
+    def get_metric(self):
+        return None
+
+    def score_pairs(self):
+        return None
 
     def metric(self):
         return self.M_

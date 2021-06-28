@@ -27,6 +27,12 @@ class KISSME(BaseMetricLearner):
     def __init__(self):
         self.M_ = None
 
+    def get_metric(self):
+        return None
+
+    def score_pairs(self):
+        return None
+
     def metric(self):
         return self.M_
 

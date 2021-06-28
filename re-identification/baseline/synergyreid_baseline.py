@@ -17,7 +17,7 @@ from reid.evaluators import Evaluator
 from reid.utils.data import transforms as T
 from reid.utils.data.preprocessor import Preprocessor
 from reid.utils.logging import Logger
-from reid.utils.serialization import load_checkpoint, save_checkpoint
+from reid.utils.serialization import load_checkpoint, save_checkpoint, write_mat_csv
 
 
 def get_data(name, split_id, data_dir, height, width, batch_size, workers,
@@ -108,11 +108,17 @@ def main(args):
     if args.evaluate:
         metric.train(model, train_loader)
         print("Validation:")
-        evaluator.evaluate(val_loader, dataset.query_val,
-                           dataset.gallery_val, metric)
+        dist_matrix = evaluator.evaluate(val_loader, dataset.query_val,
+                                         dataset.gallery_val, metric)
+        top1 = evaluator.compute_score(dist_matrix,
+                                       dataset.query_val,
+                                       dataset.gallery_val)
+        print("Validation Top1 : {}".format(top1))
         print("Test:")
-        evaluator.evaluate(test_loader, dataset.query_test,
-                           dataset.gallery_test, metric)
+        dist_matrix = evaluator.evaluate(test_loader, dataset.query_test,
+                                         dataset.gallery_test, metric)
+        write_mat_csv(osp.join(args.logs_dir, 'distance_matrix.csv'),
+                      dist_matrix, dataset)
         return
 
     # Criterion
@@ -171,12 +177,12 @@ def main(args):
     checkpoint = load_checkpoint(osp.join(args.logs_dir, 'model_best.pth.tar'))
     model.module.load_state_dict(checkpoint['state_dict'])
     metric.train(model, train_loader)
-    dist_matrix_test = evaluator.evaluate(test_loader,
-                                          dataset.query_test,
-                                          dataset.gallery_test,
-                                          metric)
-    np.savetxt(osp.join(args.logs_dir, 'dist_matrix_test'),
-               dist_matrix_test, delimiter=",")
+    dist_matrix = evaluator.evaluate(test_loader,
+                                     dataset.query_test,
+                                     dataset.gallery_test,
+                                     metric)
+    write_mat_csv(osp.join(args.logs_dir, 'distance_matrix.csv'),
+                  dist_matrix, dataset)
 
 
 if __name__ == '__main__':
@@ -216,7 +222,7 @@ if __name__ == '__main__':
     parser.add_argument('--print-freq', type=int, default=1)
     # metric learning
     parser.add_argument('--dist-metric', type=str, default='euclidean',
-                        choices=['euclidean', 'kissme'])
+                        choices=['euclidean', 'kissme', 'lsml'])
     # misc
     working_dir = osp.dirname(osp.abspath(__file__))
     parser.add_argument('--data-dir', type=str, metavar='PATH',

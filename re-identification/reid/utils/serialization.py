@@ -3,10 +3,23 @@ import json
 import os.path as osp
 import shutil
 
+import numpy as np
+
 import torch
 from torch.nn import Parameter
 
 from .osutils import mkdir_if_missing
+
+
+def write_mat_csv(fpat, dist_matrix, dataset):
+    gallery_order_list = [pid for _, pid, _ in dataset.gallery_test]
+    query_order_list = [pid for _, pid, _ in dataset.query_test]
+    data = np.array([0, *gallery_order_list])
+    rows = np.array(query_order_list)[:, np.newaxis]
+    with open(fpat, 'w') as f:
+        np.savetxt(f, data.reshape(1, data.shape[0]), delimiter=',', fmt='%i')
+        np.savetxt(f, np.hstack((rows, dist_matrix)), newline='\n', fmt=['%i',
+                   *['%10.5f']*dist_matrix.shape[1]], delimiter=',')
 
 
 def read_json(fpath):
