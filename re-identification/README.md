@@ -62,5 +62,5 @@ The identities of the gallery are NOT provided; gallery ids are just random.
 
 ## Submission
 
-You need to submit a .csv file as the pairwise distance matrix of size m x n (number of query vs number of gallery images).
-Please check the correct file order provided by the dataset loader in the baseline ```baseline/synergyreid_baseline.py```.
+You need to submit a .csv file as the pairwise distance matrix of size (m+1) x (n+1), where m is the number of querie images and n is the number of gallery images. The first row and the first column are the query and gallery ids respectively.
+Please check the example provided by the dataset loader in the baseline ```baseline/synergyreid_baseline.py```.
