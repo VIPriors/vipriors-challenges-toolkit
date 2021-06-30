@@ -113,12 +113,14 @@ def main(args):
         top1 = evaluator.compute_score(dist_matrix,
                                        dataset.query_val,
                                        dataset.gallery_val)
+        write_mat_csv(osp.join(args.logs_dir, 'distance_matrix_val.csv'),
+                      dist_matrix, dataset.query_val, dataset.gallery_val)
         print("Validation Top1 : {}".format(top1))
         print("Test:")
         dist_matrix = evaluator.evaluate(test_loader, dataset.query_test,
                                          dataset.gallery_test, metric)
         write_mat_csv(osp.join(args.logs_dir, 'distance_matrix.csv'),
-                      dist_matrix, dataset)
+                      dist_matrix, dataset.query_test, dataset.gallery_test)
         return
 
     # Criterion
@@ -182,7 +184,7 @@ def main(args):
                                      dataset.gallery_test,
                                      metric)
     write_mat_csv(osp.join(args.logs_dir, 'distance_matrix.csv'),
-                  dist_matrix, dataset)
+                  dist_matrix, dataset.query_test, dataset.gallery_test)
 
 
 if __name__ == '__main__':

@@ -76,8 +76,8 @@ class SynergyReID(Dataset):
             return pids
 
         trainval_pids = register('reid_training')
-        gallery_val_pids = register('reid_val/gallery')
         query_val_pids = register('reid_val/query')
+        gallery_val_pids = register('reid_val/gallery')
 
         assert query_val_pids <= gallery_val_pids
         assert trainval_pids.isdisjoint(query_val_pids)
@@ -126,6 +126,22 @@ class SynergyReID(Dataset):
         trainval_pids = np.concatenate((np.asarray(self.split['trainval']),
                                        np.asarray(self.split['query_val'])))
 
+        def _pluck_val(identities, indices, relabel=False, cam=0):
+            ret = []
+            for index, pid in enumerate(indices):
+                pid_images = identities[pid]
+                for camid, cam_images in enumerate(pid_images):
+                    if camid == cam:
+                        for fname in cam_images:
+                            name = osp.splitext(fname)[0]
+                            x, y, _ = map(int, name.split('_'))
+                            assert pid == x and camid == y
+                            if relabel:
+                                ret.append((fname, index, camid))
+                            else:
+                                ret.append((fname, pid, camid))
+            return ret
+
         def _pluck_test(identities, indices, n=0):
             ret = []
             for index, pid in enumerate(indices):
@@ -140,8 +156,8 @@ class SynergyReID(Dataset):
         identities_test = self.meta['identities_test']
         self.train = _pluck(identities, self.split['trainval'], relabel=True)
         self.trainval = _pluck(identities, trainval_pids, relabel=True)
-        self.query_val = _pluck(identities, self.split['query_val'])
-        self.gallery_val = _pluck(identities, self.split['gallery_val'])
+        self.query_val = _pluck_val(identities, self.split['query_val'], cam=0)
+        self.gallery_val = _pluck_val(identities, self.split['gallery_val'], cam=1)
         self.query_test = _pluck_test(identities_test, self.split['query_test'])
         self.gallery_test = _pluck_test(identities_test, self.split['gallery_test'], n=len(self.split['query_test']))
         self.num_train_ids = len(self.split['trainval'])

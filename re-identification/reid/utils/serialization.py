@@ -11,9 +11,9 @@ from torch.nn import Parameter
 from .osutils import mkdir_if_missing
 
 
-def write_mat_csv(fpat, dist_matrix, dataset):
-    gallery_order_list = [pid for _, pid, _ in dataset.gallery_test]
-    query_order_list = [pid for _, pid, _ in dataset.query_test]
+def write_mat_csv(fpat, dist_matrix, query, gallery):
+    gallery_order_list = [pid for _, pid, _ in gallery]
+    query_order_list = [pid for _, pid, _ in query]
     data = np.array([0, *gallery_order_list])
     rows = np.array(query_order_list)[:, np.newaxis]
     with open(fpat, 'w') as f:
