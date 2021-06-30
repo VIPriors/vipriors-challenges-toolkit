@@ -1,8 +1,8 @@
 # VIPriors Image Classification Challenge
 
-Maintainer: Osman Semih Kayhan (o.s.kayhan@tudelft.nl)
+Maintainer: Robert-Jan Bruintjes (r.bruintjes@tudelft.nl)
 
-We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer four challenges, where models are to be trained from scratch, and we reduce the number of training samples to a fraction of the full set. The winners of each challenge are invited to present their winning method at the VIPriors workshop presentation at ECCV 2020.
+We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer four challenges, where models are to be trained from scratch, and we reduce the number of training samples to a fraction of the full set.
 
 This challenge is the image classification challenge. We provide a subset of the Imagenet dataset to train on. We will evaluate all models submitted to the challenge on Imagenet validation data.
 
