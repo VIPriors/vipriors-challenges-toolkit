@@ -86,7 +86,6 @@ class SynergyReID(Dataset):
 
         def register_test(subdir, n=0):
             fpaths = sorted(glob(osp.join(exdir, subdir, '*.jpeg')))
-            print(len(fpaths))
             pids = set()
             for pindx, fpath in enumerate(fpaths):
                 fname = osp.basename(fpath)
