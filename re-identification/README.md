@@ -1,6 +1,6 @@
 # Re-Identification task for the VIPriors Challenge
 
-Manteiner: Davide Zambrano from Synergy Sports (davide.zambrano@synergysports.com)
+Mantainer: Davide Zambrano from Synergy Sports (davide.zambrano@synergysports.com)
 
 **NOTE this code is based on Open-reid repo: https://github.com/Cysu/open-reid.git"**
 
@@ -11,7 +11,7 @@ state-of-the-art results._
 
 We want to thank the authors for providing this tool. This version applies some changes to the original code to specifically adapt it to the VIPrior Challenge on Person Re-Identification. 
 
-We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. This year, we offer five challenges, where models are to be trained from scratch, and we reduce the number of training samples to a fraction of the full set. The winners of each challenge are invited to present their winning method at the VIPriors workshop presentation at ICCV 2021.
+We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. This year, we offer five challenges, where models are to be trained from scratch in a data-deficient setting.
 
 ## Installation
 
