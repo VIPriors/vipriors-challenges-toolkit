@@ -7,7 +7,7 @@ object-detection/data/test-images/*
 object-detection/data/annotations/*
 
 # CUSTOM: ignore exported bundles
-*.zip
+# *.zip
 
 # CUSTOM: ignore mac files
 .DS_Store
