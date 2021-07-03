@@ -1,30 +1,29 @@
 # VIPriors Object Detection challenge
 
-*Maintainer: Robert-Jan Bruintjes (r.bruintjes@tudelft.nl)*
+*Maintainer: Osman Semih Kayhan (o.s.kayhan@tudelft.nl)*
 
-We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer four challenges, where models are to be trained from scratch, and we reduce the number of training samples to a fraction of the full set. The winners of each challenge are invited to present their winning method at the VIPriors workshop presentation at ECCV 2020.
+We present the "Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer four challenges, where models are to be trained from scratch, and we reduce the number of training samples to a fraction of the full set. The winners of each challenge are invited to present their winning method at the VIPriors workshop presentation at ICCV 2021.
 
-This challenge is the object detection challenge. We provide a subset of ~6k images from the MS COCO dataset to train on. We will evaluate all models submitted to the challenge on MS COCO validation data.
+This challenge is the object detection challenge. We provide [DelftBikes](https://github.com/oskyhn/DelftBikes) dataset to train on. We will evaluate all models submitted to the challenge test data.
 
 ## Datasets
 
-The task to be performed is object detection, predicting bounding boxes. The training and validation data are subsets of the training split of the MS COCO dataset (2017 release, bounding boxes only). The test set is taken from the validation split of the MS COCO dataset.
+The task to be performed is object detection, predicting bounding boxes. [DelftBikes](https://github.com/oskyhn/DelftBikes) contains 10,000 bike images with 22 densely annotated parts for each bike. Besides, we explicitly annotate all part locations and part states as missing, intact, damaged, or occluded. The evaluation is done on avaliable part, namely intact, damaged and occluded parts. For more information about dataset, you can check the [paper](https://arxiv.org/abs/2106.02523).
 
-As a note: **DO NOT train on MS COCO validation data.** Please use the tooling described here to set up your training, validation and test data to avoid accidentally training on test data.
+We also provide a validation set which derived from training set. Validation results can be submitted to **Development (Validation set)**.
+
+For final submission, you can use both **training** and **validation** sets for training. We provide train labels and fake test labels to be able to generate submission. To note that, evaluation is done on images with their **original sizes**.
 
 To find instructions on setting up data please refer to [the data README](data/README.md).
 
-## Validation
-
-We provide an evaluation script to test your model over the validation set. Note that this script cannot be used to evaluate models over the testing set, as we do not provide labels for the test set. It is good practice to ensure your predictions work with this script, as the same script is used on the evaluation server.
 
 ## Submissions
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 
-[Please find the evaluation server here.](https://competitions.codalab.org/competitions/23661)
+[Please find the evaluation server here.](https://competitions.codalab.org/competitions/33222)
 
-To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set (see [data README](data/README.md) for how to get these images) and using the provided `submission_format.py` module to store the predictions. You can also refer to the baseline code in `baseline.py`, which includes example code on how to store prediction results as a submission file.
+To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set (see [data README](data/README.md) for how to get these images) and using the provided script to store the predictions. You can also refer to the baseline code in `train_baseline.py`, which includes example code on how to train Faster RCNN network. To generate and store prediction results as a submission file please use `generate_submission.py`.
 
 The submissions file is a JSON encoding of a list of bounding box predictions. This is the format of a submission file:
 
@@ -42,11 +41,12 @@ The submissions file is a JSON encoding of a list of bounding box predictions. T
 
 ## Baselines
 
-We trained a simple baseline model: a Faster R-CNN model with ResNet-18 FPN backbone, trained from scratch for 51 epochs with initial learning rate `0.02` and decay at epoch 48.
+We trained a simple baseline model: a Faster R-CNN model with ResNet-50 FPN backbone, trained from scratch for 16 epochs with initial learning rate `0.01` and decay at epoch 15.
+Image sizes are kept as original sizes and evaluation is also done on **original sizes**. Baseline model does not have any data augmentation.  The default hyperparameters are tuned for training on a single GPU and with batch size of 4.
 
 | **model**           | **checkpoint** | **Test set AP @ 0.50:0.95** |
 | ------------------- | -------------- | ---------------- |
-| Faster R-CNN ResNet-18 FPN | [Download checkpoint](https://competitions.codalab.org/my/datasets/download/bc13517e-5ef7-4dda-b649-2d6a0d62a7eb)      | 0.049       |
+| Faster R-CNN ResNet-50 FPN | [Download checkpoint](https://competitions.codalab.org/my/datasets/download/2c4c6b4a-c50d-4c38-89d4-0da551d20a81)      | 0.258       |
 
 The baseline models may be used as checkpoints from which to fine-tune. Please note this is the **only exception** to the rule which forbids fine-tuning.
 
@@ -56,12 +56,25 @@ The baseline models may be used as checkpoints from which to fine-tune. Please n
 
 These are example commands to use to train or fine-tune the provided baselines.
 
-**Faster R-CNN - ResNet-18 FPN backbone**
+**Faster R-CNN - ResNet-50 FPN backbone**
 
 Execute this from the `object-detection` folder:
 
 ```
-python -m torch.distributed.launch --nproc_per_node=8 --use_env train_baseline.py\
-    --dataset coco --model fasterrcnn_resnet18_fpn --epochs 26\
-    --lr-steps 16 22 --aspect-ratio-group-factor 3
+python train_baseline.py --data_path </data/DelftBikes/> \
+ --train_json <train_annotations.json> 
+```
+To generate submission:
+
+- Test submission:
+```
+python generate_submission.py  --data_path </data/DelftBikes/>\
+ --test_json <fake_test_annotations.json> --resume <checkpoint>\
+
+```
+- Val submission:
+```
+python generate_submission.py  --data_path </data/DelftBikes/>\
+ --eval_mode val --test_json <val_annotations.json> --resume <checkpoint>\
+
 ```

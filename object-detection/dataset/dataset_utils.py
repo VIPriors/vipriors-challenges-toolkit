@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import random
 import torch
 
@@ -13,7 +16,6 @@ def _flip_coco_person_keypoints(kps, width):
     flipped_data[inds] = 0
     return flipped_data
 
-
 class Compose(object):
     def __init__(self, transforms):
         self.transforms = transforms
@@ -22,7 +24,6 @@ class Compose(object):
         for t in self.transforms:
             image, target = t(image, target)
         return image, target
-
 
 class RandomHorizontalFlip(object):
     def __init__(self, prob):
@@ -43,8 +44,15 @@ class RandomHorizontalFlip(object):
                 target["keypoints"] = keypoints
         return image, target
 
-
 class ToTensor(object):
     def __call__(self, image, target):
         image = F.to_tensor(image)
         return image, target
+
+def get_transform(train):
+    # No data augmentation is applied.
+    transforms = []
+    transforms.append(ToTensor())
+    if train:
+        pass # possible data augmentations
+    return Compose(transforms)
