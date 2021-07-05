@@ -4,9 +4,8 @@ import time
 import torch
 import json
 
-import torchvision.models.detection.mask_rcnn
 from pycocotools.coco import COCO
-
+import torchvision.models.detection.mask_rcnn
 from baseline.coco_utils import get_coco_api_from_dataset
 from baseline.coco_eval import CocoEvaluator
 import baseline.utils as utils

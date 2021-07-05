@@ -1,3 +1,4 @@
 torchvision
+pytorch>=1.2
 docopt
 numpy==1.17.4

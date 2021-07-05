@@ -1,10 +1,6 @@
-# import json
-
 import numpy as np
 import copy
 import time
-# import torch
-# import torch._six
 from collections import defaultdict
 
 from pycocotools.cocoeval import COCOeval
