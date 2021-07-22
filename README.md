@@ -9,6 +9,7 @@ Please find the toolkit for each challenge here:
 - [Semantic Segmentation](semantic-segmentation/)
 - [Object Detection](object-detection/)
 - [Action Recognition](action-recognition/)
+- [Re-Identification](re-identification/)
 
 ## FAQ
 
