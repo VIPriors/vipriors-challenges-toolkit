@@ -1,5 +1,5 @@
 # VIPriors challenges toolkit
-Collection of tools to support submissions to the [1st VIPriors workshop challenges](https://vipriors.github.io/challenges/).
+Collection of tools to support submissions to the [2nd VIPriors workshop challenges](https://vipriors.github.io/challenges/).
 
 ## Challenges
 
