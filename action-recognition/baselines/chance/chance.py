@@ -6,21 +6,23 @@ Usage:
 """
 import random
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Validation file
-    ann_dir = '../../data/mod-ucf101/annotations/'
-    val_file = f'{ann_dir}mod-ucf101-validation.txt'
+    ann_dir = "../../data/annotations/"
+    val_file = f"{ann_dir}kinetics400ViPriors-val.csv"
 
     # Number of classes and number of opportunities
-    n_cls = 101
+    n_cls = 400
     top_k = 5
 
     # Chance result file
-    chance_file = './chance_baseline_val.txt'
+    chance_file = "./chance_baseline_val.txt"
 
     # Open validation file and read lines
-    with open(val_file, 'r') as train_f:
+    with open(val_file, "r") as train_f:
         lines = train_f.readlines()
+    lines.pop(0)
 
     # Generate k random classes for each clip
     clip_lst = list()
@@ -29,8 +31,8 @@ if __name__ == '__main__':
     for line in lines:
         chance = list()
         for k in range(0, top_k, 1):
-            chance.append(random.randint(1, 102))
-        clip_lst.append(line.split(' ')[0])
+            chance.append(random.randint(1, n_cls + 1))
+        clip_lst.append(line.split(",")[1])
         cls_lst.append(chance)
 	
 	# Randomising clips
@@ -45,4 +47,5 @@ if __name__ == '__main__':
             chance_f.write(line)
 
     # Finished
-    print('Random chanche baseline on Validation set created.')
+    print("Random chanche baseline on Validation set generated.")
+

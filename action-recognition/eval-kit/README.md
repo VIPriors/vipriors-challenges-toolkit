@@ -14,31 +14,31 @@ The winner of the challenge will be determined by the highest Top-1 average accu
 
 ## Code
 
-We provide here the code that runs in the evaluation server. (`eval_moducf101.py`).  To use it just do the following:
+We provide here the code that runs in the evaluation server. (`eval_kinetics400ViPriors.py`).  To use it just do the following:
 
-`python eval_moducf101.py -pred <filepath> -gt <filepath> -outdir <dirpath> -topk <list>`
+`python eval_kinetics400ViPriors.py -pred <filepath> -gt <filepath> -outdir <dirpath> -topk <list>`
 
 If you need more help about the arguments, just type the following command and some help will be printed in the prompt.
 
-`python eval_moducf101.py -h`
+`python eval_kinetics400ViPriors.py -h`
 
 ## Submission file format
 
 Please, be aware of submitting your results in a .txt file with the appropriate format:
 
 ```
-clip1.avi cls1 cls2 cls3 cls4 cls5 ...
-clip2.avi cls1 cls2 cls3 cls4 cls5 ...
+videoid cls1 cls2 cls3 cls4 cls5 ...
+videoid cls1 cls2 cls3 cls4 cls5 ...
 ...
 ```
 
 Additionally, the following restrictions are implemented in the evaluation server:
 
-- All classes are integer numbers in the range [1, 101]. This means only integer numbers are read from the result file. Any number out of the range will be considered as a classification error.
+- All classes are integer numbers in the range [1, 400]. This means only integer numbers are read from the result file. Any number out of the range will be considered as a classification error.
 - If no predicted class is found in the file, the evaluation code will consider it as a classification error.
 - Put as many class predictions as you wish in the result file. The evaluation server will take into account only the first 5 predictions.
 
-You can find an examples of this file in the baselines directories. Please, take them as a guide.
+You can find an example of this file in the baselines directories. Please, take them as a guide.
 
 ## Additional information
 
