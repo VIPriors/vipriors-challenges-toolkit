@@ -1,6 +1,6 @@
 # VIPriors Action Recognition Challenge - Evaluation
 
-The evaluation of the challenge is hosted in CodaLab. Participating in the challenge requires a CodaLab account. ~~Please, find the evaluation server here.~~ (*The evaluation server will soon be opened*)
+The evaluation of the challenge is hosted in CodaLab. Participating in the challenge requires a CodaLab account. Please, find the evaluation server [here](https://competitions.codalab.org/competitions/33420).
 
 ## Metric
 
