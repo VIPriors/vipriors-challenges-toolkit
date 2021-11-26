@@ -1,6 +1,6 @@
 # Re-Identification task for the VIPriors Challenge
 
-Mantainer: Davide Zambrano from Synergy Sports (davide.zambrano@synergysports.com)
+Mantainer: Davide Zambrano from Synergy Sports (d.zambrano@sportradar.com)
 
 **NOTE this code is based on Open-reid repo: https://github.com/Cysu/open-reid.git"**
 
@@ -37,7 +37,7 @@ This is just a quick example.
 
 Person re-identification data are provided by [Synergy Sports](ttps://synergysports.com). Data come from short sequences of basketball games, each sequence is composed by 20 frames. For the validation and test sets, the query images are persons taken at the first frame, while the gallery images are identities taken from the 2nd to the last frame.
 
-The idea behind the baseline is to provided a quick introduction to how to handle the re-id data. Specifically, attention should be put on the dataset creation and the dataloaders.
+The idea behind the baseline is to provide a quick introduction to how to handle the re-id data. Specifically, attention should be put on the dataset creation and the dataloaders.
 The data files are provided under ```baseline/data/synergyreid/raw/synergyreid_data.zip```.
 
 The baseline code extracts the raw files in the same directory and prepares the splits to use for training, validation and test.
