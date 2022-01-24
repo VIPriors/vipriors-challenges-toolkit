@@ -38,8 +38,8 @@ We trained 2 simple baseline models: a Resnet-50 with Same-Conv and Full-Conv mo
 
 |        Model        | Checkpoint | Testing Accuracy (%) |
 |:--------------------|:----------:|:--------------------:|
-| Resnet-50 Full-Conv |      -     |         31.16        |
-| Resnet-50 Same-Conv |      -     |         26.39        |
+| Resnet-50 Full-Conv |      [link](https://drive.google.com/file/d/1VqlV10kFDJsSwos1B7HsbHLSjw50GuGq/view?usp=sharing)     |         31.16        |
+| Resnet-50 Same-Conv |      [link](https://drive.google.com/file/d/1EgYFbyJqCmr1uwx0EKW7zKd8pBIBNxcw/view?usp=sharing)     |         26.39        |
 
 # Sample Code
 If you want to check the baselines, we provide two baseline models with pytorch implementation which supports multi-gpu training.
