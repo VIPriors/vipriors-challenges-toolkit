@@ -6,7 +6,7 @@ We present the "Visual Inductive Priors for Data-Efficient Computer Vision" chal
 
 ## Datasets
 
-The task to be performed is instance segmentation. The dataset ... .
+The main objective of the challenge is to segment all player and ball instances in the provided images. The dataset consists of images recorded at different basketball matches.
 
 ## Setup
 
