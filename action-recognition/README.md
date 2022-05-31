@@ -1,8 +1,8 @@
 # VIPriors Action Recognition Challenge
 
-*Maintainer: Marcos Baptista Ríos (mbaptista@gradiant.org)*
+*Maintainer: Marcos Baptista Ríos (mbaptista@alicebiometrics.com)*
 
-Welcome to the VIPriors Action Recognition Challenge. This challenge is part of the "[2nd Visual Inductive Priors for Data-Efficient Deep Learning Workshop](https://vipriors.github.io/)", which will be held at [ICCV 2021](http://iccv2021.thecvf.com/home). The winner of the challenge is invited to present their work during the workshop.
+Welcome to the VIPriors Action Recognition Challenge. This challenge is part of the "[3rd Visual Inductive Priors for Data-Efficient Deep Learning Workshop](https://vipriors.github.io/)", which will be held at [ECCV 2022](https://eccv2022.ecva.net).
 
 The common idea of all VIPriors challenges is to have models trained from scratch on an reduced version of a certain dataset for a certain Computer Vision task. In this particular challenge, the task is Action Recognition and the original dataset is Kinetics400.
 
@@ -22,16 +22,10 @@ The task will be evaluated using the mean average accuracy over all classes on t
 
 For more information about the evaluation, please refer to the evaluation toolkit README.
 
-## Baselines
-
-We provide some baselines trained and tested on the train and validation sets, respectively, of the challenge version of dataset.
-
-For more information about the baselines that we offer, please refer to the baselines README.
-
 ## Additional information
 
 All the tooling provided for this challenge was tested using a common python 3.7 installation. The only needed packages are numpy, pandas and and scikit-learn. You can find the models in the `requirements.txt `file. Although it should work with different versions, we recommend to use the same which we tested with.
 
 ## Questions
 
-If you find any problem/bug or have any doubt about the VIPriors Action Recognition Challenge, please contact with the maintainer of this challenge at mbaptista@gradiant.org
+If you find any problem/bug or have any doubt about the VIPriors Action Recognition Challenge, please contact with the maintainer of this challenge at mbaptista@alicebiometrics.com
