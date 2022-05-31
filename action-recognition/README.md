@@ -2,7 +2,7 @@
 
 *Maintainer: Marcos Baptista Ríos (mbaptista@alicebiometrics.com)*
 
-Welcome to the VIPriors Action Recognition Challenge. This challenge is part of the "[3rd Visual Inductive Priors for Data-Efficient Deep Learning Workshop](https://vipriors.github.io/)", which will be held at [ECCV 2022](https://eccv2022.ecva.net). The winner of the challenge is invited to present their work during the workshop.
+Welcome to the VIPriors Action Recognition Challenge. This challenge is part of the "[3rd Visual Inductive Priors for Data-Efficient Deep Learning Workshop](https://vipriors.github.io/)", which will be held at [ECCV 2022](https://eccv2022.ecva.net).
 
 The common idea of all VIPriors challenges is to have models trained from scratch on an reduced version of a certain dataset for a certain Computer Vision task. In this particular challenge, the task is Action Recognition and the original dataset is Kinetics400.
 
