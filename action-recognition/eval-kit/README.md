@@ -1,6 +1,6 @@
 # VIPriors Action Recognition Challenge - Evaluation
 
-The evaluation of the challenge is hosted in CodaLab. Participating in the challenge requires a CodaLab account. Please, find the evaluation server [here](https://competitions.codalab.org/competitions/33420).
+The evaluation of the challenge is hosted in CodaLab. Participating in the challenge requires a CodaLab account. Please, find the evaluation server [here](link-here).
 
 ## Metric
 
@@ -38,7 +38,7 @@ Additionally, the following restrictions are implemented in the evaluation serve
 - If no predicted class is found in the file, the evaluation code will consider it as a classification error.
 - Put as many class predictions as you wish in the result file. The evaluation server will take into account only the first 5 predictions.
 
-You can find an example of this file in the baselines directories. Please, take them as a guide.
+You can find an example of this file in the baselines directories. Please, take it as a guide.
 
 ## Additional information
 
