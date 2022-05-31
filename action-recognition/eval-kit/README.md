@@ -38,7 +38,7 @@ Additionally, the following restrictions are implemented in the evaluation serve
 - If no predicted class is found in the file, the evaluation code will consider it as a classification error.
 - Put as many class predictions as you wish in the result file. The evaluation server will take into account only the first 5 predictions.
 
-You can find an example of this file in the baselines directories. Please, take it as a guide.
+You can run the baseline to get an example of this file. Please, take it as a guide.
 
 ## Additional information
 
