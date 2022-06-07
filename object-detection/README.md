@@ -21,7 +21,7 @@ To find instructions on setting up data please refer to [the data README](data/R
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 
-[Please find the evaluation server here.](https://competitions.codalab.org/competitions/33222)
+[Please find the evaluation server here.](https://codalab.lisn.upsaclay.fr/competitions/4696)
 
 To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set (see [data README](data/README.md) for how to get these images) and using the provided script to store the predictions. You can also refer to the baseline code in `train_baseline.py`, which includes example code on how to train Faster RCNN network. To generate and store prediction results as a submission file please use `generate_submission.py`.
 
