@@ -20,6 +20,8 @@ Please, find more information on how to get the modified dataset as well as the 
 
 The task will be evaluated using the mean average accuracy over all classes on the test set. The winner of the challenge will be determined with the highest Top-1 accuracy. However, as extra information of the models, we will also compute the Top-3 and Top-5 accuracy.
 
+[Please find the evaluation server here.](https://codalab.lisn.upsaclay.fr/competitions/4703)
+
 For more information about the evaluation, please refer to the evaluation toolkit README.
 
 ## Additional information
