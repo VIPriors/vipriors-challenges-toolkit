@@ -10,7 +10,12 @@ Violating this restrictions may result in disqualification. Additionally, the ch
 
 ## Setting up the data
 
-We know the difficulties of downloading and arranging such a large dataset as Kinetics400. For this reason, we provide a link to directly download the modified version that we use in this challenge. **Please, use this link to download it [here through SURFDrive (~100GB)](https://surfdrive.surf.nl/files/index.php/s/fQ41gfR0ifgjW2A)** (or [here through Google Drive](https://drive.google.com/drive/folders/1ynqDSEqEN88zoNKR32OaFQXggFOAj-UY?usp=sharing)).
+We know the difficulties of downloading and arranging such a large dataset as Kinetics400. For this reason, we provide a link to directly download the modified version that we use in this challenge. **Please, use this link to download it [through SURFDrive (~100GB)](https://surfdrive.surf.nl/files/index.php/s/fQ41gfR0ifgjW2A)**.
+
+Additionally, we also provide links in the file `Kinetics400ViPriors_urls.txt` to download it through Google Storage. You just have to do as follows:
+
+`wget -i Kinetics400ViPriors.txt`
+`cat *.tar.gz.* | tar xvfz -`
 
 Once the challenge dataset (**Kinetics400ViPriors**) has been downloaded, you will have a directory with the following structure:
 
