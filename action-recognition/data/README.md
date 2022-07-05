@@ -14,7 +14,8 @@ We know the difficulties of downloading and arranging such a large dataset as Ki
 
 Additionally, we also provide links in the file `Kinetics400ViPriors_urls.txt` to download it through Google Storage. You just have to do as follows:
 
-`wget -i Kinetics400ViPriors.txt`
+`wget -i Kinetics400ViPriors_urls.txt`
+
 `cat *.tar.gz.* | tar xvfz -`
 
 Once the challenge dataset (**Kinetics400ViPriors**) has been downloaded, you will have a directory with the following structure:
@@ -37,6 +38,7 @@ Description of the content:
 - `annotations/kinetics400ViPriors-train.csv`: annotated ground truth of the training videos.
 - `annotations/kinetics400ViPriors-val.csv`: annotated ground truth of the validation videos.
 - `annotations/kinetics400ViPriors-test-public.csv`: test videos, without annotations.
+- `Kinetics400ViPriors_urls.txt`: urls to download dataset.
 - `train/*.mp4`: training video files.
 - `val/*.mp4`: validation video files.
 - `test/*.mp4`: test video files.
