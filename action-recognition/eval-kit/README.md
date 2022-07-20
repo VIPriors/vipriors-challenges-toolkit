@@ -1,6 +1,6 @@
 # VIPriors Action Recognition Challenge - Evaluation
 
-The evaluation of the challenge is hosted in CodaLab. Participating in the challenge requires a CodaLab account. Please, find the evaluation server [here](link-here).
+The evaluation of the challenge is hosted in CodaLab. Participating in the challenge requires a CodaLab account. Please, find the evaluation server [here](https://codalab.lisn.upsaclay.fr/competitions/4703).
 
 ## Metric
 
@@ -22,9 +22,15 @@ If you need more help about the arguments, just type the following command and s
 
 `python eval_kinetics400ViPriors.py -h`
 
+As an example, if you run the chance baseline inside the baselines directory you will get a result .txt file. You can check the eval kit with that file by doing as follows:
+
+`python eval_kinetics400ViPriors.py -pred ../baselines/chance/chance_baseline_val.txt -gt ../data/annotations/kinetics400ViPriors-val.csv`
+
+This execution will generate a file called scores.txt with the scores of the method for the corresponding top-k accuracies.
+
 ## Submission file format
 
-Please, be aware of submitting your results in a .txt file with the appropriate format:
+Please, be aware of submitting your results in a .txt file with the appropriate format (check file generated from chance baseline):
 
 ```
 videoid cls1 cls2 cls3 cls4 cls5 ...

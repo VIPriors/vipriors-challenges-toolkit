@@ -34,11 +34,11 @@ if __name__ == "__main__":
             chance.append(random.randint(1, n_cls + 1))
         clip_lst.append(line.split(",")[1])
         cls_lst.append(chance)
-	
-	# Randomising clips
+
+    # Randomising clips
     random.seed(1992)
     random.shuffle(clip_lst)
-	
+
     # Generate files with results
     with open(chance_file, 'w') as chance_f:
         for i, clip in enumerate(clip_lst):
