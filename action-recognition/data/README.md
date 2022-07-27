@@ -22,6 +22,13 @@ wget -i Kinetics400ViPriors_urls.txt
 cat *.tar.gz.* | tar xvfz -
 ```
 
+### Check your downloaded files
+Once you have downloaded Kinetics400ViPriors please make yourself sure whether your data is at the same version of the challenge. To do this, we provide code. Just run the following:
+```bash
+python kinetics400ViPriors_data_check.py
+```
+This will check if you have all available videos. And it also checks if you do not have any other corrupted video, apart from those we currently consider. The list of the current blocked videos is in `annotations/kinetics400ViPriors_corrupted_videos.txt`
+
 ### Content of this directory
 Once **Kinetics400ViPriors** has been downloaded, this directory should have the following structure:
 
@@ -31,6 +38,7 @@ Kinetics400ViPriors
 │   ├── kinetics400ViPriors-train.csv
 │   ├── kinetics400ViPriors-val.csv
 │   ├── kinetics400ViPriors-test-public.csv
+│   ├── kinetics400ViPriors_corrupted_videos.txt
 │   └── clsIdx.csv
 ├── train
 ├── val
@@ -41,12 +49,13 @@ With more detail, you will have:
 - `annotations/kinetics400ViPriors-train.csv`: annotated ground truth of the training videos.
 - `annotations/kinetics400ViPriors-val.csv`: annotated ground truth of the validation videos.
 - `annotations/kinetics400ViPriors-test-public.csv`: test videos, without annotations.
+- `annotations/Kinetics400ViPriors_corrupted_videos.txt`: list of current blocked videos (from all subsets).
 - `Kinetics400ViPriors_urls.txt`: urls to download dataset.
 - `train/*.mp4`: training video files.
 - `val/*.mp4`: validation video files.
 - `test/*.mp4`: test video files.
 
 Make sure you have: 
-- Train set: 40K clips.
-- Validation set: 10K clips.
-- Test set: 20K clips.
+- Train set: ~40K clips.
+- Validation set: ~10K clips.
+- Test set: ~20K clips.

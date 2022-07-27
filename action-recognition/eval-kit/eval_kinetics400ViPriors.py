@@ -19,6 +19,7 @@ import numpy as np
 import random
 import pandas as pd
 from sklearn.metrics import confusion_matrix
+from pathlib import Path
 
 
 def parse_input_args():
@@ -32,6 +33,7 @@ def parse_input_args():
 
     parser.add_argument("-pred", help="Prediction file.")
     parser.add_argument("-gt", help="Ground Truth file.")
+    parser.add_argument("-corr", help="Current corrupted videos .txt file.")
     parser.add_argument("-outdir", default="./", help="Output directory.")
     parser.add_argument("-topk", default=[1, 3, 5], help="List containing the"
                                                          " K thresholds for"
@@ -41,11 +43,18 @@ def parse_input_args():
     return parser.parse_args()
 
 
-def top_k_acc(pred_file, gt_file, k_val, outdir):
+def top_k_acc(pred_file, gt_file, corr_file, k_val, outdir):
 
     # Read the pred file and the gt file
     with open(pred_file, "r") as pred_f:
         pred = pred_f.readlines()
+
+    # Read list of corrupted videos
+    with open(corr_file, "r") as f:
+        corr = f.read().splitlines()
+    corr_names = []
+    for corr_vid in corr:
+        corr_names.append(Path(corr_vid).name.split(".")[0])
     
     pred_clips = list()
     pred_cls_1 = list()
@@ -55,6 +64,10 @@ def top_k_acc(pred_file, gt_file, k_val, outdir):
     pred_cls_5 = list()
     for line in pred:
         if len(line.split(" ")) >= 2:
+            # If video is corrupted, skip
+            if line.split(" ")[0] in corr_names:
+                continue
+
             # Get clip name
             pred_clips.append(line.split(" ")[0])
 
@@ -97,8 +110,9 @@ def top_k_acc(pred_file, gt_file, k_val, outdir):
                              "cls5": pred_cls_5,
                              })
 
-    # Read gt
+    # Read gt and remove corrupted videos
     gt_df = pd.read_csv(gt_file)
+    gt_df = gt_df[~gt_df["videoid"].isin(corr_names)].reset_index()
     
     # Read class index
     clsidx_file = "../data/annotations/clsIdx.csv"
@@ -162,10 +176,10 @@ def top_k_acc(pred_file, gt_file, k_val, outdir):
 
 if __name__ == '__main__':
     # Get input arguments
-    pred_file, gt_file, outdir, k = vars(parse_input_args()).values()
+    pred_file, gt_file, corr_file, outdir, k = vars(parse_input_args()).values()
 
     # Compute accuracy
     print('Calculating Accuracy...')
-    top_k_acc(pred_file, gt_file, k, outdir)
+    top_k_acc(pred_file, gt_file, corr_file, k, outdir)
     print('DONE!')
 

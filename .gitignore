@@ -5,6 +5,13 @@ object-detection/data/generate/*
 object-detection/data/images/*
 object-detection/data/test-images/*
 object-detection/data/annotations/*
+action-recognition/data/test
+action-recognition/data/train
+action-recognition/data/val
+action-recognition/data/*tar.gz.*
+action-recognition/data/my_corrupted_videos.txt
+action-recognition/eval-kit/scores.txt
+action-recognition/baselines/chance/chance_baseline_val.txt
 
 # CUSTOM: ignore exported bundles
 # *.zip

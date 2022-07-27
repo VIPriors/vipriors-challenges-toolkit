@@ -28,6 +28,8 @@ As an example, if you run the chance baseline inside the baselines directory you
 
 This execution will generate a file called scores.txt with the scores of the method for the corresponding top-k accuracies.
 
+**Important:** Blocked videos are not consider in the evaluation. The current list of blocked videos is in `../data/annotations/kinetics400ViPriors_corrupted_videos.txt`
+
 ## Submission file format
 
 Please, be aware of submitting your results in a .txt file with the appropriate format (check file generated from chance baseline):
