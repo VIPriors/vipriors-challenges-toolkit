@@ -2,17 +2,17 @@
 
 *Maintainer: Osman Semih Kayhan (o.s.kayhan@tudelft.nl)*
 
-We present the "3rd Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer four challenges, where models are to be trained from scratch. The winners of each challenge are invited to present their winning method at the VIPriors workshop presentation at ECCV 2022.
+We present the "4th Visual Inductive Priors for Data-Efficient Computer Vision" challenge. We offer two challenges, where models are to be trained from scratch.
 
 This challenge is the object detection challenge. We provide [DelftBikes](https://github.com/oskyhn/DelftBikes) dataset to train on. We will evaluate all models submitted to the challenge test data.
 
 ## Datasets
 
-The task to be performed is object detection, predicting bounding boxes. [DelftBikes](https://github.com/oskyhn/DelftBikes) contains 10,000 bike images with 22 densely annotated parts for each bike. Besides, we explicitly annotate all part locations and part states as missing, intact, damaged, or occluded. To note that, the dataset contains some noisy labels too, thefore it is more challenging. The evaluation is done on avaliable part, namely intact, damaged and occluded parts. For more information about dataset, you can check the [paper](https://arxiv.org/abs/2106.02523).
+The task to be performed is object detection, i.e. predicting bounding boxes. [DelftBikes](https://github.com/oskyhn/DelftBikes) contains 10,000 bike images with 22 densely annotated parts for each bike. Besides, we explicitly annotate all part locations and part states as missing, intact, damaged, or occluded. To note that, the dataset contains some noisy labels too, thefore it is more challenging. The evaluation is done on avaliable part, namely intact, damaged and occluded parts. For more information about dataset, you can check the [paper](https://arxiv.org/abs/2106.02523).
 
-We also provide a validation set which derived from training set. Validation results can be submitted to **Development (Validation set)**.
+We also provide a validation set. Validation results can be submitted to **Development (Validation set)**.
 
-For final submission, you can use both **training** and **validation** sets for training. We provide train labels and fake test labels to be able to generate submission. To note that, evaluation is done on images with their **original sizes**.
+For final submission, you can use both **training** and **validation** sets for training. We provide train labels and fake test labels to be able to generate submission. Note that evaluation is performed on images with their **original sizes**.
 
 To find instructions on setting up data please refer to [the data README](data/README.md).
 
@@ -21,7 +21,7 @@ To find instructions on setting up data please refer to [the data README](data/R
 
 The evaluation server is hosted using CodaLab. Submitting to the challenge requires a CodaLab account.
 
-[Please find the evaluation server here.](https://codalab.lisn.upsaclay.fr/competitions/4696)
+[Please find the evaluation server here.](https://codalab.lisn.upsaclay.fr/competitions/13493)
 
 To participate in the challenge one uploads a file of predictions over the challenge test set to the evaluation server. Generate these predictions by inferring your model over our test set (see [data README](data/README.md) for how to get these images) and using the provided script to store the predictions. You can also refer to the baseline code in `train_baseline.py`, which includes example code on how to train Faster RCNN network. To generate and store prediction results as a submission file please use `generate_submission.py`.
 
