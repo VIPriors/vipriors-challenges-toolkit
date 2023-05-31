@@ -1,14 +1,12 @@
 # VIPriors challenges toolkit
-Collection of tools to support submissions to the [3rd VIPriors workshop challenges](https://vipriors.github.io/challenges/).
+Collection of tools to support submissions to the [4th VIPriors workshop challenges](https://vipriors.github.io/challenges/).
 
 ## Challenges
 
 Please find the toolkit for each challenge here:
 
-- [Image Classification](image-classification/)
 - [Instance Segmentation](instance-segmentation/)
 - [Object Detection](object-detection/)
-- [Action Recognition](action-recognition/)
 
 ## FAQ
 

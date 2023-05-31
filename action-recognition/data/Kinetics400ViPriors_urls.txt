@@ -1,7 +1,0 @@
-https://storage.googleapis.com/public_kinetics400vipriors_dataset/Kinetics400ViPriors/Kinetics400ViPriors.tar.gz.001
-https://storage.googleapis.com/public_kinetics400vipriors_dataset/Kinetics400ViPriors/Kinetics400ViPriors.tar.gz.002
-https://storage.googleapis.com/public_kinetics400vipriors_dataset/Kinetics400ViPriors/Kinetics400ViPriors.tar.gz.003
-https://storage.googleapis.com/public_kinetics400vipriors_dataset/Kinetics400ViPriors/Kinetics400ViPriors.tar.gz.004
-https://storage.googleapis.com/public_kinetics400vipriors_dataset/Kinetics400ViPriors/Kinetics400ViPriors.tar.gz.005
-https://storage.googleapis.com/public_kinetics400vipriors_dataset/Kinetics400ViPriors/Kinetics400ViPriors.tar.gz.006
-https://storage.googleapis.com/public_kinetics400vipriors_dataset/Kinetics400ViPriors/Kinetics400ViPriors.tar.gz.007
