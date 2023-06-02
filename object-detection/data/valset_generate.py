@@ -41,7 +41,7 @@ def valset_gen(root, destination, train_json_path, valset_size):
         new_train_dict[im_name] = json_data[im_name]
         
     with open(os.path.join(root,'new_train_annotations.json'), 'w') as outfile:
-        json.dump(val_dict, outfile) 
+        json.dump(new_train_dict, outfile) 
     print('New training labels are successfully generated.')
 
 if __name__ == "__main__":
